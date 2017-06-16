@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>NPM一些常用命令 | WangWei&#39;blog | 越努力•越幸运</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="npm,module,nodejs">
+    <meta name="description" content="关于NPMNPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。就目前而言，NPM的官网[1]拥有18万的packages。国内的镜像是淘宝所提供的CNPM[2]，与NPM相同，它会每隔10分钟就同步一次。 一些常用命令 npm -v: 查看npm安装的版本 npm init: 引导你创建一个package.js">
+<meta name="keywords" content="npm,module,nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NPM一些常用命令">
+<meta property="og:url" content="http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/index.html">
+<meta property="og:site_name" content="WangWei&#39;blog">
+<meta property="og:description" content="关于NPMNPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。就目前而言，NPM的官网[1]拥有18万的packages。国内的镜像是淘宝所提供的CNPM[2]，与NPM相同，它会每隔10分钟就同步一次。 一些常用命令 npm -v: 查看npm安装的版本 npm init: 引导你创建一个package.js">
+<meta property="og:updated_time" content="2017-06-15T09:41:11.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NPM一些常用命令">
+<meta name="twitter:description" content="关于NPMNPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。就目前而言，NPM的官网[1]拥有18万的packages。国内的镜像是淘宝所提供的CNPM[2]，与NPM相同，它会每隔10分钟就同步一次。 一些常用命令 npm -v: 查看npm安装的版本 npm init: 引导你创建一个package.js">
+    
+        <link rel="alternate" type="application/atom+xml" title="WangWei&#39;blog" href="/blog/atom.xml">
+    
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/brand.jpg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Wang Wei</h5>
+          <a href="mailto:380902396@qq.com" title="380902396@qq.com" class="mail">380902396@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://hellowangwei.cn"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hellowangwei" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3911516398" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">NPM一些常用命令</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">NPM一些常用命令</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-15T07:57:11.000Z" itemprop="datePublished" class="page-time">
+  2017-06-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/转载/">转载</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/转载/开发日常/">开发日常</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关于NPM"><span class="post-toc-number">1.</span> <span class="post-toc-text">关于NPM</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一些常用命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">一些常用命令</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#题外话CNPM"><span class="post-toc-number">3.</span> <span class="post-toc-text">题外话CNPM</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#淘宝NPM镜像"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">淘宝NPM镜像</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装模块"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">安装模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#更多"><span class="post-toc-number">4.</span> <span class="post-toc-text">更多</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-NPM一些常用命令"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">NPM一些常用命令</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-15 15:57:11" datetime="2017-06-15T07:57:11.000Z"  itemprop="datePublished">2017-06-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/转载/">转载</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/转载/开发日常/">开发日常</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="关于NPM"><a href="#关于NPM" class="headerlink" title="关于NPM"></a>关于NPM</h1><p>NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。<br>就目前而言，NPM的官网<a href="https://www.npmjs.com/" target="_blank" rel="external">[1]</a>拥有18万的packages。国内的镜像是淘宝所提供的CNPM<a href="http://npm.taobao.org/" target="_blank" rel="external">[2]</a>，与NPM相同，它会每隔10分钟就同步一次。</p>
+<h1 id="一些常用命令"><a href="#一些常用命令" class="headerlink" title="一些常用命令"></a>一些常用命令</h1><ul>
+<li><code>npm -v</code>: 查看npm安装的版本</li>
+<li><code>npm init</code>: 引导你创建一个package.json文件，包括名称、版本、作者这些信息等</li>
+<li><code>npm install &lt;modulename&gt;</code>: 安装模块</li>
+<li><code>npm install &lt;modulename&gt; -g</code>: 安装全局模块</li>
+<li><code>npm install &lt;modulename&gt;@1.0.0</code>: 安装指定版本的模块</li>
+<li><p><code>npm install &lt;modulename&gt; -save</code>: 安装模块并添加到package.json依赖中</p>
+</li>
+<li><p><code>npm uninstall &lt;modulename&gt;</code>: 卸载模块</p>
+</li>
+<li><p><code>npm cache clean</code>: 清除缓存</p>
+</li>
+<li><p><code>npm help</code>: 查看帮助命令</p>
+</li>
+<li><code>npm ls</code>: 查看当前目录安装的依赖</li>
+<li><code>npm ls -g</code>: 查看全局目录安装的依赖</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><code>npm view &lt;modulename&gt;</code>: 查看包的package.json</li>
+<li><code>npm view &lt;modulename&gt; dependencies</code>: 查看包的依赖关系</li>
+<li><p><code>npm view &lt;modulename&gt; repository.url</code>: 查看包的源文件地址</p>
+</li>
+<li><p><code>npm update &lt;modulename&gt;</code>: 更新模块</p>
+</li>
+<li><code>npm remove &lt;modulename&gt;</code>: 移除模块</li>
+</ul>
+<h1 id="题外话CNPM"><a href="#题外话CNPM" class="headerlink" title="题外话CNPM"></a>题外话CNPM</h1><p>有时候会出现NPM无法使用的情况，此时可以尝试使用CNPM解决此问题。</p>
+<h2 id="淘宝NPM镜像"><a href="#淘宝NPM镜像" class="headerlink" title="淘宝NPM镜像"></a>淘宝NPM镜像</h2><p>这是一个完整 <code>npmjs.org</code> 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure>
+<h2 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h2><p>与NPM类似，将<code>npm install &lt;...&gt;</code>改为<code>cpm install &lt;...&gt;</code></p>
+<h1 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h1><p>更多命令参考文档<a href="https://docs.npmjs.com/" target="_blank" rel="external">[3]</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-06-15T09:41:11.754Z" itemprop="dateUpdated">2017-06-15 17:41:11</time>
+</span><br>
+
+
+        
+        <br><b style="color:#f66">版权声明</b> - Wangwei，转载请表明出处：<br><a href="/blog/2017/06/15/NPM一些常用命令/" target="_blank" rel="external">http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/</a>
+        
+    </div>
+    <footer>
+        <a href="http://hellowangwei.cn/blog">
+            <img src="/blog/img/avatar.jpg" alt="Wang Wei">
+            Wang Wei
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/module/">module</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/npm/">npm</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/&title=《NPM一些常用命令》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/&title=《NPM一些常用命令》 — WangWei'blog&source=关于NPMNPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。就目..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NPM一些常用命令》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/blog/2017/06/15/使用-Git-管理项目-reset-与-rebase/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用 Git 管理项目 - reset 与 rebase</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CSS 的使用中你可能不知道的 7 件事</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/index.html',
+        sourceId: 'NPM一些常用命令',
+        productKey: '00c942fa607846efad6e1357838ea8df',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/blog/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Wang Wei &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/&title=《NPM一些常用命令》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/&title=《NPM一些常用命令》 — WangWei'blog&source=关于NPMNPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。就目..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NPM一些常用命令》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aQY7jMAwEwPn/p7PAnhZYjKabcgaIVDoZSWCrfGAokl9f8Xr9XevPX/+s5JPk9w8vDAyMj2W8liv5Tb7yu+V7w8DAuIeRB9M8sLaBeH39w54xMDAw4lv//22Lx8DAwHiWsT52ro+jax4GBgbG7BA722J7HH37WRwDA+MDGW1j4Dev39jfwMDA+BDGTln/HUnesNmAgYFxNCPfxM5BdH+kIynqYWBgnM1Isqw81D71+/w+GBgYNzCSEDYre63TvqfKdhgYGGcz2gbAs+B2gCPKbTEwMA5ltOFyp4XQvqaotIeBgXE0Y394K38R7euon46BgXENYx0Wdwa52umIPFXFwMA4m5EX6HcKZG3AbV8BBgbG2Yyk+N6GyNkxuG1efvu/gYGBcSgjv1GSxs3KZ3nL84eOAAYGxtGMJO17aows+baeGcHAwDia0R44Z0MSszBaDKJhYGAczZiVw/LxslnbYGeHGBgYpzLaEJmHzjZxnBXpMDAwTmW0IS/fxKzNMAz9GBgY1zBmA2FJypgg26M1BgbGPYxZS2AWLoti2cZzMTAwzmO8ytW2B9Zhdyc0Y2Bg3MNog11Sps8f3F63qSoGBsZJjCTI5puYBc285fDtczEwMC5g1IWtMvjmhblZ6MfAwMCIKnajJPKpUI6BgYHx1AhFmz4WZTsMDIwLGO0htk3j3tESwMDAuIex3xiYleRmz90a2sDAwPg8xh8UlYSatNVOoAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'hellowangwei';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'hellowangwei';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

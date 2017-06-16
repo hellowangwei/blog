@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>WangWei&#39;blog</title>
+  <subtitle>越努力•越幸运</subtitle>
+  <link href="/blog/atom.xml" rel="self"/>
+  
+  <link href="http://hellowangwei.cn/blog/"/>
+  <updated>2017-06-16T07:39:38.311Z</updated>
+  <id>http://hellowangwei.cn/blog/</id>
+  
+  <author>
+    <name>Wang Wei</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用hexo+indego搭建静态博客</title>
+    <link href="http://hellowangwei.cn/blog/2017/06/15/%E4%BD%BF%E7%94%A8hexo-indego%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://hellowangwei.cn/blog/2017/06/15/使用hexo-indego搭建静态博客/</id>
+    <published>2017-06-15T09:55:33.000Z</published>
+    <updated>2017-06-16T07:39:38.311Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://github.com/" target="_blank" rel="external">Github </a>为广大开发者提供了一个非常好的平台，不仅是代码的开源，同时<a href="https://github.com/" target="_blank" rel="external"> Github </a>还提供了开发者可以在<a href="https://github.com/" target="_blank" rel="external"> Github </a>上建立自己的站点（GithubPage）的一个非常有意思的功能。这个功能的局限是只能创建静态的网站，那么我们可以使用一些工具来快速创建这一网站。<br>本文旨在帮助刚接触<a href="https://github.com/" target="_blank" rel="external"> Github </a>新手，想利用<a href="https://github.com/" target="_blank" rel="external"> Github </a>来创建自己的站点、个人博客等。大神可以忽视<strong>(:з」∠)</strong>。</p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>你需要在<a href="https://github.com/" target="_blank" rel="external"> Github </a>上创建一个属于自己的账户，然后新建一个仓库（<code>new repository</code>），并命名为 <code>YourSiteName.github.io/com</code>，此时<a href="https://github.com/" target="_blank" rel="external"> Github </a>会帮助你初始化一个静态网页，你可以根据自己的喜好选择一些模版（<del>这都不是重点</del>），接着尝试访问下你所建的站点，成功后就可以开始动工了。</p>
+<h1 id="关于-Hexo"><a href="#关于-Hexo" class="headerlink" title="关于 Hexo"></a>关于 Hexo</h1><ul>
+<li><strong>A fast, simple &amp; powerful blog framework</strong></li>
+<li><strong>快速，简单而高效的静态博客框架</strong><ul>
+<li><strong>超快速度：</strong> Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。</li>
+<li><strong>支持 Markdown：</strong> Hexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。</li>
+<li><strong>一键部署：</strong> 只需一条指令即可部署到 GitHub Pages, Heroku 或其他网站。</li>
+<li><strong>丰富的插件：</strong> Hexo 拥有强大的插件系统，安装插件可以让 Hexo 支持 Jade, CoffeeScript。</li>
+</ul>
+</li>
+</ul>
+<h1 id="关于indego"><a href="#关于indego" class="headerlink" title="关于indego"></a>关于indego</h1><img src="/blog/2017/06/15/使用hexo-indego搭建静态博客/indego.jpg" alt="indego.jpg" title="">
+<a id="more"></a>
+<h1 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h1><p>上面是对搭建博客的一些技术了解，接下来进入正题。</p>
+<h2 id="Hexo-初始化博客框架"><a href="#Hexo-初始化博客框架" class="headerlink" title="Hexo 初始化博客框架"></a>Hexo 初始化博客框架</h2><h3 id="1-安装-Hexo"><a href="#1-安装-Hexo" class="headerlink" title="1. 安装 Hexo"></a>1. 安装 Hexo</h3><p>Hexo 安装和搭建依赖<a href="https://nodejs.org/en/" target="_blank" rel="external"> Nodejs </a>和<a href="http://git-scm.com/" target="_blank" rel="external"> Git </a>，可自行下载。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure></p>
+<h3 id="2-初始化框架"><a href="#2-初始化框架" class="headerlink" title="2. 初始化框架"></a>2. 初始化框架</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo init &lt;yourFolder&gt;</div><div class="line">$ cd &lt;yourFolder&gt;</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
+<p> 初始化完成大概的目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── _config.yml //网站的 配置 信息，您可以在此配置大部分的参数。</div><div class="line">├── package.json</div><div class="line">├── scaffolds 	//模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。</div><div class="line">├── source 	//资源文件夹是存放用户资源的地方。</div><div class="line">|   ├── _drafts</div><div class="line">|   └── _posts</div><div class="line">└── themes 	//主题 文件夹。Hexo 会根据主题来生成静态页面。</div></pre></td></tr></table></figure></p>
+<h3 id="3-新建文章（创建一个-Hello-World）"><a href="#3-新建文章（创建一个-Hello-World）" class="headerlink" title="3. 新建文章（创建一个 Hello World）"></a>3. 新建文章（创建一个 Hello World）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &quot;Hello World&quot;</div></pre></td></tr></table></figure>
+<p> 在 <code>/source/_post</code> 里添加 <code>hello-world.md</code> 文件，之后新建的文章都将存放在此目录下。</p>
+<h3 id="4-生成网站"><a href="#4-生成网站" class="headerlink" title="4. 生成网站"></a>4. 生成网站</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p> 此时会将 <code>/source</code> 的 <code>.md</code> 文件生成到 <code>/public</code> 中，形成网站的静态文件。</p>
+<h3 id="5-服务器"><a href="#5-服务器" class="headerlink" title="5. 服务器"></a>5. 服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server -p 3000</div></pre></td></tr></table></figure>
+<p> 输入 <code>http://localhost:3000</code> 即可查看网站。</p>
+<h3 id="6-部署网站"><a href="#6-部署网站" class="headerlink" title="6. 部署网站"></a>6. 部署网站</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p> 部署网站之前需要生成静态文件，即可以用 <code>$ hexo generate -d</code> 直接生成并部署。此时需要在 <code>_config.yml</code> 中配置你所要部署的站点：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">## Docs: http://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: git@github.com:YourRepository.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
+<h3 id="7-更多"><a href="#7-更多" class="headerlink" title="7. 更多"></a>7. 更多</h3><ul>
+<li>官网 - <a href="https://hexo.io/zh-cn/" target="_blank" rel="external">[Hexo]</a></li>
+<li>配置相关 - <a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">[Hexo | 配置]</a></li>
+<li>更多的命令 - <a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="external">[Hexo | 指令]</a></li>
+</ul>
+<p>那么到此为止网站的雏形算是完成了，接下来你就要自己去管理和完善个人网站了。</p>
+<h2 id="使用-indego-主题让站点更酷炫"><a href="#使用-indego-主题让站点更酷炫" class="headerlink" title="使用 indego 主题让站点更酷炫"></a>使用 indego 主题让站点更酷炫</h2><h3 id="1-主题安装"><a href="#1-主题安装" class="headerlink" title="1. 主题安装"></a>1. 主题安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd your-hexo-site</div><div class="line">$ git clone git@github.com:yscoder/hexo-theme-indigo.git themes/indigo</div></pre></td></tr></table></figure>
+<p> 从indego的 <code>Gihub</code> 仓库中获取最新版本。</p>
+<h3 id="2-切换主题"><a href="#2-切换主题" class="headerlink" title="2. 切换主题"></a>2. 切换主题</h3><p>执行 <code>git branch</code> 显示所有本地分支，如果只存在一个分支，可以执行下面的命令获取另一分支的主题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 获取远程 card 分支，并切换</div><div class="line">$ git checkout -b card origin/card</div><div class="line"></div><div class="line"># 获取远程 master 分支，并切换</div><div class="line">$ git checkout -b master origin/master</div></pre></td></tr></table></figure></p>
+<p>此命令只需执行一次，之后使用 <code>git checkout [branch]</code> 命令在两个主题之间切换。</p>
+<h3 id="3-依赖安装"><a href="#3-依赖安装" class="headerlink" title="3. 依赖安装"></a>3. 依赖安装</h3><p>还是在 Hexo 根目录，如果以下插件已安装过，无需再次安装。</p>
+<h4 id="Less"><a href="#Less" class="headerlink" title="Less"></a>Less</h4><p>主题默认使用 less 作为 css 预处理工具。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-renderer-less --save</div></pre></td></tr></table></figure></p>
+<h4 id="Json-content"><a href="#Json-content" class="headerlink" title="Json-content"></a>Json-content</h4><p>用于生成静态站点数据，用作站内搜索的数据源。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-generator-json-content --save</div></pre></td></tr></table></figure></p>
+<h3 id="4-开启标签页"><a href="#4-开启标签页" class="headerlink" title="4. 开启标签页"></a>4. 开启标签页</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new page tags</div></pre></td></tr></table></figure>
+<p>修改 <code>hexo/source/tags/index.md</code> 的元数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">layout: tags</div><div class="line">comments: false</div><div class="line">---</div></pre></td></tr></table></figure></p>
+<h3 id="5-开启分类页"><a href="#5-开启分类页" class="headerlink" title="5. 开启分类页"></a>5. 开启分类页</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new page categories</div></pre></td></tr></table></figure>
+<p>修改 <code>hexo/source/categories/index.md</code> 的元数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">layout: categories</div><div class="line">comments: false</div><div class="line">---</div></pre></td></tr></table></figure></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p><a href="http://hellowangwei.github.io/blog">我的博客</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github &lt;/a&gt;为广大开发者提供了一个非常好的平台，不仅是代码的开源，同时&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; Github &lt;/a&gt;还提供了开发者可以在&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; Github &lt;/a&gt;上建立自己的站点（GithubPage）的一个非常有意思的功能。这个功能的局限是只能创建静态的网站，那么我们可以使用一些工具来快速创建这一网站。&lt;br&gt;本文旨在帮助刚接触&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; Github &lt;/a&gt;新手，想利用&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; Github &lt;/a&gt;来创建自己的站点、个人博客等。大神可以忽视&lt;strong&gt;(:з」∠)&lt;/strong&gt;。&lt;/p&gt;
+&lt;h1 id=&quot;准备&quot;&gt;&lt;a href=&quot;#准备&quot; class=&quot;headerlink&quot; title=&quot;准备&quot;&gt;&lt;/a&gt;准备&lt;/h1&gt;&lt;p&gt;你需要在&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; Github &lt;/a&gt;上创建一个属于自己的账户，然后新建一个仓库（&lt;code&gt;new repository&lt;/code&gt;），并命名为 &lt;code&gt;YourSiteName.github.io/com&lt;/code&gt;，此时&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; Github &lt;/a&gt;会帮助你初始化一个静态网页，你可以根据自己的喜好选择一些模版（&lt;del&gt;这都不是重点&lt;/del&gt;），接着尝试访问下你所建的站点，成功后就可以开始动工了。&lt;/p&gt;
+&lt;h1 id=&quot;关于-Hexo&quot;&gt;&lt;a href=&quot;#关于-Hexo&quot; class=&quot;headerlink&quot; title=&quot;关于 Hexo&quot;&gt;&lt;/a&gt;关于 Hexo&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A fast, simple &amp;amp; powerful blog framework&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;快速，简单而高效的静态博客框架&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;超快速度：&lt;/strong&gt; Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;支持 Markdown：&lt;/strong&gt; Hexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一键部署：&lt;/strong&gt; 只需一条指令即可部署到 GitHub Pages, Heroku 或其他网站。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;丰富的插件：&lt;/strong&gt; Hexo 拥有强大的插件系统，安装插件可以让 Hexo 支持 Jade, CoffeeScript。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;关于indego&quot;&gt;&lt;a href=&quot;#关于indego&quot; class=&quot;headerlink&quot; title=&quot;关于indego&quot;&gt;&lt;/a&gt;关于indego&lt;/h1&gt;&lt;img src=&quot;/blog/2017/06/15/使用hexo-indego搭建静态博客/indego.jpg&quot; alt=&quot;indego.jpg&quot; title=&quot;&quot;&gt;
+    
+    </summary>
+    
+      <category term="笔记随笔" scheme="http://hellowangwei.cn/blog/categories/%E7%AC%94%E8%AE%B0%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用 Git 管理项目 - reset 与 rebase</title>
+    <link href="http://hellowangwei.cn/blog/2017/06/15/%E4%BD%BF%E7%94%A8-Git-%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE-reset-%E4%B8%8E-rebase/"/>
+    <id>http://hellowangwei.cn/blog/2017/06/15/使用-Git-管理项目-reset-与-rebase/</id>
+    <published>2017-06-15T09:49:09.000Z</published>
+    <updated>2017-06-16T06:49:06.646Z</updated>
+    
+    <content type="html"><![CDATA[<p>在日常管理项目的过程中，可能会遇到提交的 commit/merge 并不是想要的，或是操作失误提交了，那么此时我们需要把不想要的 commit/merge 取消掉，如果做到呢？Git 为我们提供了一个 <code>reset</code> command，很好地解决了这个问题。</p>
+<h1 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h1><h2 id="1-命令说明"><a href="#1-命令说明" class="headerlink" title="1. 命令说明"></a>1. 命令说明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reset [--hard|soft|mixed|merge|keep] [&lt;commit&gt;|&lt;HEAD&gt;]</div></pre></td></tr></table></figure>
+<p>常用的是<code>[--hard|soft|mixed]</code>，本文主要使用<code>--hard</code>作为例子进行说明。</p>
+<h2 id="2-本地仓库"><a href="#2-本地仓库" class="headerlink" title="2. 本地仓库"></a>2. 本地仓库</h2><p>在本地仓库执行 <code>$ git reset --hard HEAD^</code> 可以将本地的仓库回滚到上一次提交时的状态，<code>HEAD^</code>指的是上一次提交。</p>
+<p>同时你也可以执行 <code>$ git reset --hard fc232ae</code> 将其回滚到 <code>fc232ae</code> commit 时的状态。</p>
+<h2 id="3-远程仓库"><a href="#3-远程仓库" class="headerlink" title="3. 远程仓库"></a>3. 远程仓库</h2><p>以上操作只会对本地仓库造成影响，而远程仓库的源码和 commit 信息并不会因此改变。那么此时我们需要另外一个 command 来改变远程仓库的状态。</p>
+<p><strong>注意，此时不要在上一步的操作之后执行<code>$ git pull</code> ，因为这个操作会使本地仓库的状态与远程同步。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push origin [branch] -f</div></pre></td></tr></table></figure></p>
+<p>执行此命令后，Git 会将远程仓库的状态与本地仓库的保持一致，即回滚状态。</p>
+<a id="more"></a>
+<p>在更新代码时，难免一次到位，此时就会生成许许多多的 commit 。比如同一个文件，反复地修改代码，反复地提交，此时会有5，6个 commit 甚至更多，那么你会在提交 list 中看到一大串的 commit 记录，会觉得很是头疼，杂乱。此时我们需要把这些 commit 整合以下，合并到一个 commit 中，其他的 commit 都 squash 到第一 commit 中，那么就需要用到 <code>rebase</code>。</p>
+<h1 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h1><h2 id="1-说明"><a href="#1-说明" class="headerlink" title="1. 说明"></a>1. 说明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git rebase -i [branch|&lt;commit&gt;]</div></pre></td></tr></table></figure>
+<p>你可以直接进入某个分支的 rebase 也可以进入某次 commit 的 rebase，如果你是项将某些 commit 合并，那么建议使用 <code>$ git rebase -i &lt;commit&gt;</code>。</p>
+<p>此外 rebase 还提供三个操作命令，分别是 <code>--continue</code>、<code>--absort</code> 和 <code>--skip</code>，这三个命令的意思分别是“继续”、“退出”和“跳过”。</p>
+<h2 id="2-查看记录"><a href="#2-查看记录" class="headerlink" title="2. 查看记录"></a>2. 查看记录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git log</div></pre></td></tr></table></figure>
+<p>执行此命令即可看到当前分支下所有的提交记录，然后根据个人需要复制其中的 commit 的 SHA 进行 rebase 操作。</p>
+<h2 id="3-rebase"><a href="#3-rebase" class="headerlink" title="3. rebase"></a>3. rebase</h2><p>执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git rebase -i 9cbc329</div></pre></td></tr></table></figure></p>
+<p>然后就会看到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">pick fb554f5 This is commit 1</div><div class="line">pick 2bd1903 This is commit 2</div><div class="line">pick d987ebf This is commit 3</div><div class="line"># Rebase 9cbc329..d987ebf onto 9cbc329</div><div class="line">#</div><div class="line"># Commands:</div><div class="line"># p, pick = use commit</div><div class="line"># r, reword = use commit, but edit the commit message</div><div class="line"># e, edit = use commit, but stop for amending</div><div class="line"># s, squash = use commit, but meld into previous commit</div><div class="line"># f, fixup = like &quot;squash&quot;, but discard this commit&apos;s log message</div><div class="line"># x, exec = run command (the rest of the line) using shell</div><div class="line">#</div><div class="line"># If you remove a line here THAT COMMIT WILL BE LOST.</div><div class="line"># However, if you remove everything, the rebase will be aborted.</div><div class="line">#</div></pre></td></tr></table></figure></p>
+<p>那么其中 <code>pick fb554f5 This is commit 1</code>我们可以把它分成三部分去解释：</p>
+<ul>
+<li><code>pick</code>:：操作，即 rebase command</li>
+<li><code>fb554f5</code>：commit shortID，提交的简写ID</li>
+<li><code>This is commit 1</code>： commit message，提交时填写的提交信息</li>
+</ul>
+<p>此时我们可以看到输出结果中所提供的一些操作方法，比如 <code>pick</code>、<code>squash</code>、<code>edit</code> 等。那么重要的是 <code>pick</code> 和 <code>squash</code>。</p>
+<p>接着我们需要把 <code>2bd1903</code> 和 <code>d987ebf</code> 合并到 <code>fb554f5</code> 中，做如下操作（<strong>注意：此时是 VIM 的操作界面，熟悉 Linux 的同学可以无视，不熟悉的可以<a href="#简略的指导">简略的指导</a></strong>）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">pick fb554f5 This is commit 1</div><div class="line">squash 2bd1903 This is commit 2</div><div class="line">squash d987ebf This is commit 3</div><div class="line"># Rebase 9cbc329..d987ebf onto 9cbc329</div><div class="line">#</div><div class="line"># Commands:</div><div class="line"># p, pick = use commit</div><div class="line"># r, reword = use commit, but edit the commit message</div><div class="line"># e, edit = use commit, but stop for amending</div><div class="line"># s, squash = use commit, but meld into previous commit</div><div class="line"># f, fixup = like &quot;squash&quot;, but discard this commit&apos;s log message</div><div class="line"># x, exec = run command (the rest of the line) using shell</div><div class="line">#</div><div class="line"># If you remove a line here THAT COMMIT WILL BE LOST.</div><div class="line"># However, if you remove everything, the rebase will be aborted.</div><div class="line">#</div></pre></td></tr></table></figure></p>
+<p>在做完以上修改操作后输入 <code>:x</code> 保存文件并退出界面，然后就会看到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ git rebase -i 9cbc329</div><div class="line">rebase in progress; onto 9cbc329</div><div class="line">You are currently rebasing branch &apos;master&apos; on &apos;9cbc329&apos;.</div><div class="line"></div><div class="line">nothing to commit, working directory clean</div><div class="line">The previous cherry-pick is now empty, possibly due to conflict resolution.</div><div class="line">If you wish to commit it anyway, use:</div><div class="line"></div><div class="line">    git commit --allow-empty</div><div class="line"></div><div class="line">Otherwise, please use &apos;git reset&apos;</div><div class="line">Could not apply 9cbc329f722f8e531496da70ee3857b031574b6d... squash commit on rebase</div></pre></td></tr></table></figure></p>
+<p>此时用 <code>$ git status</code>  查看会看到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">rebase in progress; onto 9cbc329</div><div class="line">You are currently rebasing branch &apos;master&apos; on &apos;9cbc329&apos;.</div><div class="line">  (all conflicts fixed: run &quot;git rebase --continue&quot;)</div><div class="line"></div><div class="line">nothing to commit, working directory clean</div></pre></td></tr></table></figure></p>
+<p>紧接着我们需要执行 <code>$ git rebase --continue</code> 操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ git rebase --continue</div><div class="line">[detached HEAD 2bd1903...d987ebf] squash commit on rebase</div><div class="line"> Date: Tue Nov 3 10:09:43 2015 +0800</div><div class="line"> 1 file changed, 149 insertions(+), 154 deletions(-)</div><div class="line"> rewrite test.js (72%)</div><div class="line">Successfully rebased and updated refs/heads/master.</div></pre></td></tr></table></figure></p>
+<p>最后我们需要把修改合并好的 commit push 到远程仓库上：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push origin [branch] -f</div></pre></td></tr></table></figure></p>
+<p>到此为止，整个 rebase 操作都已完成。<br>你会看到类似：<br><img src="/blog/2017/06/15/使用-Git-管理项目-reset-与-rebase/4.png" alt="4.png" title=""><br>变成类似：<br><img src="/blog/2017/06/15/使用-Git-管理项目-reset-与-rebase/5.png" alt="5.png" title=""></p>
+<h1 id="简略的指导"><a href="#简略的指导" class="headerlink" title="简略的指导"></a>简略的指导</h1><p>在 VIM 的操作界面下，需要按 <code>I/Insert</code> 键进行插入修改文本操作，修改完文本之后需要按 <code>Esc</code> 键退出编辑状态，然后输入 <code>:q</code> 是离开，输入 <code>:!q</code> 是强制离开，输入 <code>:x</code> 是保存修改并离开。<br>在 rebase 修改文本结束后需要输入 <code>:x</code> 进行保存。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在日常管理项目的过程中，可能会遇到提交的 commit/merge 并不是想要的，或是操作失误提交了，那么此时我们需要把不想要的 commit/merge 取消掉，如果做到呢？Git 为我们提供了一个 &lt;code&gt;reset&lt;/code&gt; command，很好地解决了这个问题。&lt;/p&gt;
+&lt;h1 id=&quot;reset&quot;&gt;&lt;a href=&quot;#reset&quot; class=&quot;headerlink&quot; title=&quot;reset&quot;&gt;&lt;/a&gt;reset&lt;/h1&gt;&lt;h2 id=&quot;1-命令说明&quot;&gt;&lt;a href=&quot;#1-命令说明&quot; class=&quot;headerlink&quot; title=&quot;1. 命令说明&quot;&gt;&lt;/a&gt;1. 命令说明&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ git reset [--hard|soft|mixed|merge|keep] [&amp;lt;commit&amp;gt;|&amp;lt;HEAD&amp;gt;]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;常用的是&lt;code&gt;[--hard|soft|mixed]&lt;/code&gt;，本文主要使用&lt;code&gt;--hard&lt;/code&gt;作为例子进行说明。&lt;/p&gt;
+&lt;h2 id=&quot;2-本地仓库&quot;&gt;&lt;a href=&quot;#2-本地仓库&quot; class=&quot;headerlink&quot; title=&quot;2. 本地仓库&quot;&gt;&lt;/a&gt;2. 本地仓库&lt;/h2&gt;&lt;p&gt;在本地仓库执行 &lt;code&gt;$ git reset --hard HEAD^&lt;/code&gt; 可以将本地的仓库回滚到上一次提交时的状态，&lt;code&gt;HEAD^&lt;/code&gt;指的是上一次提交。&lt;/p&gt;
+&lt;p&gt;同时你也可以执行 &lt;code&gt;$ git reset --hard fc232ae&lt;/code&gt; 将其回滚到 &lt;code&gt;fc232ae&lt;/code&gt; commit 时的状态。&lt;/p&gt;
+&lt;h2 id=&quot;3-远程仓库&quot;&gt;&lt;a href=&quot;#3-远程仓库&quot; class=&quot;headerlink&quot; title=&quot;3. 远程仓库&quot;&gt;&lt;/a&gt;3. 远程仓库&lt;/h2&gt;&lt;p&gt;以上操作只会对本地仓库造成影响，而远程仓库的源码和 commit 信息并不会因此改变。那么此时我们需要另外一个 command 来改变远程仓库的状态。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意，此时不要在上一步的操作之后执行&lt;code&gt;$ git pull&lt;/code&gt; ，因为这个操作会使本地仓库的状态与远程同步。&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ git push origin [branch] -f&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;执行此命令后，Git 会将远程仓库的状态与本地仓库的保持一致，即回滚状态。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="转载" scheme="http://hellowangwei.cn/blog/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="Git" scheme="http://hellowangwei.cn/blog/categories/%E8%BD%AC%E8%BD%BD/Git/"/>
+    
+    
+      <category term="git" scheme="http://hellowangwei.cn/blog/tags/git/"/>
+    
+      <category term="项目管理" scheme="http://hellowangwei.cn/blog/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="reset" scheme="http://hellowangwei.cn/blog/tags/reset/"/>
+    
+      <category term="rebase" scheme="http://hellowangwei.cn/blog/tags/rebase/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NPM一些常用命令</title>
+    <link href="http://hellowangwei.cn/blog/2017/06/15/NPM%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/</id>
+    <published>2017-06-15T07:57:11.000Z</published>
+    <updated>2017-06-15T09:41:11.754Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="关于NPM"><a href="#关于NPM" class="headerlink" title="关于NPM"></a>关于NPM</h1><p>NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。<br>就目前而言，NPM的官网<a href="https://www.npmjs.com/" target="_blank" rel="external">[1]</a>拥有18万的packages。国内的镜像是淘宝所提供的CNPM<a href="http://npm.taobao.org/" target="_blank" rel="external">[2]</a>，与NPM相同，它会每隔10分钟就同步一次。</p>
+<h1 id="一些常用命令"><a href="#一些常用命令" class="headerlink" title="一些常用命令"></a>一些常用命令</h1><ul>
+<li><code>npm -v</code>: 查看npm安装的版本</li>
+<li><code>npm init</code>: 引导你创建一个package.json文件，包括名称、版本、作者这些信息等</li>
+<li><code>npm install &lt;modulename&gt;</code>: 安装模块</li>
+<li><code>npm install &lt;modulename&gt; -g</code>: 安装全局模块</li>
+<li><code>npm install &lt;modulename&gt;@1.0.0</code>: 安装指定版本的模块</li>
+<li><p><code>npm install &lt;modulename&gt; -save</code>: 安装模块并添加到package.json依赖中</p>
+</li>
+<li><p><code>npm uninstall &lt;modulename&gt;</code>: 卸载模块</p>
+</li>
+<li><p><code>npm cache clean</code>: 清除缓存</p>
+</li>
+<li><p><code>npm help</code>: 查看帮助命令</p>
+</li>
+<li><code>npm ls</code>: 查看当前目录安装的依赖</li>
+<li><code>npm ls -g</code>: 查看全局目录安装的依赖</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><code>npm view &lt;modulename&gt;</code>: 查看包的package.json</li>
+<li><code>npm view &lt;modulename&gt; dependencies</code>: 查看包的依赖关系</li>
+<li><p><code>npm view &lt;modulename&gt; repository.url</code>: 查看包的源文件地址</p>
+</li>
+<li><p><code>npm update &lt;modulename&gt;</code>: 更新模块</p>
+</li>
+<li><code>npm remove &lt;modulename&gt;</code>: 移除模块</li>
+</ul>
+<h1 id="题外话CNPM"><a href="#题外话CNPM" class="headerlink" title="题外话CNPM"></a>题外话CNPM</h1><p>有时候会出现NPM无法使用的情况，此时可以尝试使用CNPM解决此问题。</p>
+<h2 id="淘宝NPM镜像"><a href="#淘宝NPM镜像" class="headerlink" title="淘宝NPM镜像"></a>淘宝NPM镜像</h2><p>这是一个完整 <code>npmjs.org</code> 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure>
+<h2 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h2><p>与NPM类似，将<code>npm install &lt;...&gt;</code>改为<code>cpm install &lt;...&gt;</code></p>
+<h1 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h1><p>更多命令参考文档<a href="https://docs.npmjs.com/" target="_blank" rel="external">[3]</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;关于NPM&quot;&gt;&lt;a href=&quot;#关于NPM&quot; class=&quot;headerlink&quot; title=&quot;关于NPM&quot;&gt;&lt;/a&gt;关于NPM&lt;/h1&gt;&lt;p&gt;NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。&lt;br&gt;就目前而言，NPM的官网&lt;a href=&quot;https://www.npmjs.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;[1]&lt;/a&gt;拥有18万的packages。国内的镜像是淘宝所提供的CNPM&lt;a href=&quot;http://npm.taobao.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;[2]&lt;/a&gt;，与NPM相同，它会每隔10分钟就同步一次。&lt;/p&gt;
+&lt;h1 id=&quot;一些常用命令&quot;&gt;&lt;a href=&quot;#一些常用命令&quot; class=&quot;headerlink&quot; title=&quot;一些常用命令&quot;&gt;&lt;/a&gt;一些常用命令&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;npm -v&lt;/code&gt;: 查看npm安装的版本&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;npm init&lt;/code&gt;: 引导你创建一个package.json文件，包括名称、版本、作者这些信息等&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;npm install &amp;lt;modulename&amp;gt;&lt;/code&gt;: 安装模块&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;npm install &amp;lt;modulename&amp;gt; -g&lt;/code&gt;: 安装全局模块&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;npm install &amp;lt;modulename&amp;gt;@1.0.0&lt;/code&gt;: 安装指定版本的模块&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;npm install &amp;lt;modulename&amp;gt; -save&lt;/code&gt;: 安装模块并添加到package.json依赖中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;npm uninstall &amp;lt;modulename&amp;gt;&lt;/code&gt;: 卸载模块&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;npm cache clean&lt;/code&gt;: 清除缓存&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;npm help&lt;/code&gt;: 查看帮助命令&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;npm ls&lt;/code&gt;: 查看当前目录安装的依赖&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;npm ls -g&lt;/code&gt;: 查看全局目录安装的依赖&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="转载" scheme="http://hellowangwei.cn/blog/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="开发日常" scheme="http://hellowangwei.cn/blog/categories/%E8%BD%AC%E8%BD%BD/%E5%BC%80%E5%8F%91%E6%97%A5%E5%B8%B8/"/>
+    
+    
+      <category term="npm" scheme="http://hellowangwei.cn/blog/tags/npm/"/>
+    
+      <category term="module" scheme="http://hellowangwei.cn/blog/tags/module/"/>
+    
+      <category term="nodejs" scheme="http://hellowangwei.cn/blog/tags/nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS 的使用中你可能不知道的 7 件事</title>
+    <link href="http://hellowangwei.cn/blog/2017/06/15/CSS-%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%AD%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84-7-%E4%BB%B6%E4%BA%8B/"/>
+    <id>http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/</id>
+    <published>2017-06-15T07:50:56.000Z</published>
+    <updated>2017-06-15T09:41:11.796Z</updated>
+    
+    <content type="html"><![CDATA[<p>无论你信不信，JavaScript 和 CSS 已经开始重叠，并为 CSS 增加了更多的功能。当我在写 <a href="https://davidwalsh.name/ways-css-javascript-interact" target="_blank" rel="external">CSS 与 JavaScript 交互中你可能不知道的 5 种方式</a>的时候，读者对于 CSS 与 JavaScript 已经重叠的事感到很惊讶。那么今天，我会着重为你介绍 7 个可以通过 CSS 完成的任务 —— 不使用 JavaScript 或图像处理！</p>
+<h1 id="CSS-supports"><a href="#CSS-supports" class="headerlink" title="CSS @supports"></a><a href="https://davidwalsh.name/css-supports" target="_blank" rel="external">CSS @supports</a></h1><p>每个优秀的前端工程师都会在使用某个特性前测试一下，确保是否在浏览器中可以使用。而这类测试通常是由 JavaScript 完成的，当然，也有很多人用 Modernizr（拥有很多很好功能的测试工具）来测试特性。那么现在有一个 CSS 新的 API 可以让你去做特性测试：<a href="https://davidwalsh.name/css-supports" target="_blank" rel="external">@supports</a>，下面的例子将简单地教你如何使用：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">/* basic usage */</div><div class="line">@supports(prop:value) &#123;</div><div class="line">  /* more styles */</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* real usage */</div><div class="line">@supports (display: flex) &#123;</div><div class="line">  div &#123; display: flex; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* testing prefixes too */</div><div class="line">@supports (display: -webkit-flex) or</div><div class="line">          (display: -moz-flex) or</div><div class="line">          (display: flex) &#123;</div><div class="line"></div><div class="line">    section &#123;</div><div class="line">      display: -webkit-flex;</div><div class="line">      display: -moz-flex;</div><div class="line">      display: flex;</div><div class="line">      float: none;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>@supports 这个新的特性也有一个相对应的 JavaScript 方式，但这个特性还在实验阶段，希望我们可以很快用到！</p>
+<h1 id="CSS-Filters"><a href="#CSS-Filters" class="headerlink" title="CSS Filters"></a><a href="https://davidwalsh.name/css-filters" target="_blank" rel="external">CSS Filters</a></h1><p>你可以写一个服务去修改图片的颜色，同时还可以把它卖给 Facebook 获得大量的钱！当然，写一个图片过滤器功能只是一个简单化的实现，并非一门科学。在 Mozilla 的第一周，我写了一个<a href="https://github.com/darkwing/fotofilter" target="_blank" rel="external">小的应用</a>（这让我赢了比赛，BTW…就说说而已），这个应用使用了一些 JS-base 的数学方法并使用 canvas 去做图片过滤器。这很麻烦，但是现在我们可以<a href="https://davidwalsh.name/css-filters" target="_blank" rel="external">用 CSS 的特性去完成这一功能</a>！</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* simple filter */</span></div><div class="line"><span class="selector-class">.myElement</span> &#123;</div><div class="line">  <span class="attribute">-webkit-filter</span>: <span class="built_in">blur</span>(2px);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* advanced filter */</span></div><div class="line"><span class="selector-class">.myElement</span> &#123;</div><div class="line">  <span class="attribute">-webkit-filter</span>: <span class="built_in">blur</span>(2px) grayscale (.<span class="number">5</span>) <span class="built_in">opacity</span>(0.8) <span class="built_in">hue-rotate</span>(120deg);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这类的过滤功能只是创建一个图片的原型，并且不会保存和导出来完成过滤器的功能。这对于图片管理或想处理任何一张图片来说很方便！</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/css-filters.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<h1 id="Pointer-Events-和点击事件"><a href="#Pointer-Events-和点击事件" class="headerlink" title="Pointer Events 和点击事件"></a><a href="https://davidwalsh.name/pointer-events" target="_blank" rel="external">Pointer Events 和点击事件</a></h1><p><a href="https://davidwalsh.name/pointer-events" target="_blank" rel="external">CSS 特性中的 <code>pointer-events</code></a> 提供了一个方法，能使一个元素 disable，即在用户点击某个元素时，不触发它在 JavaScript 中写的点击事件：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* do nothing when clicked or activated */</span></div><div class="line"><span class="selector-class">.disabled</span> &#123; <span class="attribute">pointer-events</span>: none; &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* this will _not_ fire because of the pointer-events: none application */</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"disabled-element"</span>).addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">  alert(<span class="string">"Clicked!"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在上述的例子中，由于 <code>pointer-events</code> 的值是 <code>none</code>，而使点击事件不被触发。大有用处的是，让你不必到处去检查类名或属性，来确认哪一个是 disabled 的了。</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/pointer-events.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<h1 id="Slide-Down-amp-Slide-Up"><a href="#Slide-Down-amp-Slide-Up" class="headerlink" title="Slide Down &amp; Slide Up"></a><a href="https://davidwalsh.name/css-slide" target="_blank" rel="external">Slide Down &amp; Slide Up</a></h1><p>CSS 使我们能够创建转换和动画，但通常我们需要一个 JavaScript 库帮助我们实现。例如一个比较流行的动画效果<a href="https://davidwalsh.name/css-slide" target="_blank" rel="external"> slide up 和 silde down</a>，大概很多人都不知道这个可以只用 CSS 实现吧！</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* slider in open state */</span></div><div class="line"><span class="selector-class">.slider</span> &#123;</div><div class="line">  <span class="attribute">overflow-y</span>: hidden;</div><div class="line">  <span class="attribute">max-height</span>: <span class="number">500px</span>; <span class="comment">/* approximate max height */</span></div><div class="line"></div><div class="line">  <span class="attribute">transition-property</span>: all;</div><div class="line">  <span class="attribute">transition-duration</span>: .<span class="number">5s</span>;</div><div class="line">  <span class="attribute">transition-timing-function</span>: <span class="built_in">cubic-bezier</span>(0, 1, 0.5, 1);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* close it with the "closed" class */</span></div><div class="line"><span class="selector-class">.slider</span><span class="selector-class">.closed</span> &#123;</div><div class="line">  <span class="attribute">max-height</span>: <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>很聪明地使用了 <code>max-height</code> 来控制元素的展开和收缩。</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/css-slide.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<h1 id="CSS-Counters"><a href="#CSS-Counters" class="headerlink" title="CSS Counters"></a><a href="https://davidwalsh.name/css-counters" target="_blank" rel="external">CSS Counters</a></h1><p>我们不禁地问，“counter” 在网上意味着什么呢？但是 <code>CSS Counters</code> 就是另外一回事了。这个特性可以把一个 counter 加到元素中，通过 <code>:before</code> 或 <code>:after</code> ：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* initialize the counter */</span></div><div class="line"><span class="selector-tag">ol</span><span class="selector-class">.slides</span> &#123;</div><div class="line">  <span class="attribute">counter-reset</span>: slideNum;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* increment the counter */</span></div><div class="line"><span class="selector-tag">ol</span><span class="selector-class">.slides</span> &gt; <span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">counter-increment</span>: slideNum;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* display the counter value */</span></div><div class="line"><span class="selector-tag">ol</span><span class="selector-class">.slides</span> <span class="selector-tag">li</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"["</span> <span class="built_in">counter</span>(slideNum) <span class="string">"]"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通常这个会在一些模块或是列表中用到。</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/css-counters.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<h1 id="Unicode-CSS-Classes"><a href="#Unicode-CSS-Classes" class="headerlink" title="Unicode CSS Classes"></a><a href="https://davidwalsh.name/unicode-css-classes" target="_blank" rel="external">Unicode CSS Classes</a></h1><p>有大量的文章说明，去教你如何对 CSS 的类命名。但你应该不知道会有这样的文档，去教你<a href="https://davidwalsh.name/unicode-css-classes" target="_blank" rel="external">用特殊字符命名你的 css 类</a>：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.ಠ_ಠ &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#f00</span>;</div><div class="line">  <span class="attribute">background</span>: pink;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.❤ &#123;</div><div class="line">  <span class="attribute">background</span>: lightgreen;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid green;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但请不要这么使用。</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/unicode-css-classes.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<h1 id="CSS-Circles"><a href="#CSS-Circles" class="headerlink" title="CSS Circles"></a><a href="https://davidwalsh.name/css-circles" target="_blank" rel="external">CSS Circles</a></h1><p><a href="https://davidwalsh.name/css-circles" target="_blank" rel="external">CSS 中的圆形</a> 与 <a href="https://davidwalsh.name/css-triangles" target="_blank" rel="external">CSS 中的三角形</a>一样。通过使用 <code>border-radius</code> 就能创建一个完美的圆形！</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.circle</span> &#123;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">  <span class="comment">/* width and height can be anything, as long as they're equal */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你也可以给圆形添加一些渐变效果，甚至可以添加动画。CSS 拥有更多<a href="http://alistapart.com/article/css-shapes-101" target="_blank" rel="external">对于图形统一的 API</a>，当然现在你可以使用 hack 创建一个圆形。</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/css-circles.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<p>就是这些：你可能不知道的 7 个关于 CSS 的事，一部分是临界的情况，其他一部分还是非常实用的。那么就大胆地去用它们吧！</p>
+<p><a href="https://davidwalsh.name/css-facts" target="_blank" rel="external"><strong>原文链接</strong></a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;无论你信不信，JavaScript 和 CSS 已经开始重叠，并为 CSS 增加了更多的功能。当我在写 &lt;a href=&quot;https://davidwalsh.name/ways-css-javascript-interact&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CSS 与 JavaScript 交互中你可能不知道的 5 种方式&lt;/a&gt;的时候，读者对于 CSS 与 JavaScript 已经重叠的事感到很惊讶。那么今天，我会着重为你介绍 7 个可以通过 CSS 完成的任务 —— 不使用 JavaScript 或图像处理！&lt;/p&gt;
+&lt;h1 id=&quot;CSS-supports&quot;&gt;&lt;a href=&quot;#CSS-supports&quot; class=&quot;headerlink&quot; title=&quot;CSS @supports&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://davidwalsh.name/css-supports&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CSS @supports&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;每个优秀的前端工程师都会在使用某个特性前测试一下，确保是否在浏览器中可以使用。而这类测试通常是由 JavaScript 完成的，当然，也有很多人用 Modernizr（拥有很多很好功能的测试工具）来测试特性。那么现在有一个 CSS 新的 API 可以让你去做特性测试：&lt;a href=&quot;https://davidwalsh.name/css-supports&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@supports&lt;/a&gt;，下面的例子将简单地教你如何使用：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;/* basic usage */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;@supports(prop:value) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  /* more styles */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/* real usage */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;@supports (display: flex) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  div &amp;#123; display: flex; &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/* testing prefixes too */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;@supports (display: -webkit-flex) or&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;          (display: -moz-flex) or&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;          (display: flex) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    section &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      display: -webkit-flex;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      display: -moz-flex;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      display: flex;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      float: none;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="转载" scheme="http://hellowangwei.cn/blog/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="好文分享" scheme="http://hellowangwei.cn/blog/categories/%E8%BD%AC%E8%BD%BD/%E5%A5%BD%E6%96%87%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="译文" scheme="http://hellowangwei.cn/blog/tags/%E8%AF%91%E6%96%87/"/>
+    
+      <category term="css" scheme="http://hellowangwei.cn/blog/tags/css/"/>
+    
+      <category term="features" scheme="http://hellowangwei.cn/blog/tags/features/"/>
+    
+      <category term="front-end" scheme="http://hellowangwei.cn/blog/tags/front-end/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>生成SSH keys</title>
+    <link href="http://hellowangwei.cn/blog/2017/06/15/%E7%94%9F%E6%88%90SSH-keys/"/>
+    <id>http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/</id>
+    <published>2017-06-15T07:04:33.000Z</published>
+    <updated>2017-06-15T09:33:24.772Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先确认自己的系统中是否已经拥有密钥。在默认情况下SSH的密钥存储在其<code>~/.ssh</code>目录下。可以使用以下命令进入目录并列出内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd ~/.ssh</div><div class="line">$ ls</div><div class="line"></div><div class="line">id_rsa  id_rsa.pub  known_hosts</div></pre></td></tr></table></figure></p>
+<p>其中<code>id_rsa</code>和<code>id_rsa.pub</code>就是存储密钥的文件，带有<code>.pub</code>后缀的是公钥，另外一个则是私钥。如果存在这些文件，则可以直接用<code>$ cat id_rsa.pub</code>来读取密钥内容。<br>如果找不到这样的文件（或者不存在<code>~/.ssh</code>目录），则可以通过<code>$ ssh-keygen</code>来创建它们。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C `you@email.com`</div><div class="line"></div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file in which to save the key (/home/schacon/.ssh/id_rsa):</div><div class="line">Created directory &apos;/home/schacon/.ssh&apos;.</div><div class="line">Enter passphrase (empty for no passphrase):</div><div class="line">Enter same passphrase again:</div><div class="line">Your identification has been saved in /home/schacon/.ssh/id_rsa.</div><div class="line">Your public key has been saved in /home/schacon/.ssh/id_rsa.pub.</div><div class="line">The key fingerprint is:</div><div class="line">d0:82:24:8e:d7:f1:bb:9b:33:53:96:93:49:da:9b:e3 you@email.com</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>首先 <code>$ ssh-keygen</code>会确认密钥的存储位置（默认是<code>.ssh/id_rsa</code>），然后它会要求你输入两次密钥口令。如果你不想在使用密钥时输入口令，将其留空即可（为了方便以后操作，建议不设置密码）。</p>
+<p>在完成上述操作之后即可获得SSH key，获得的公钥大概是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ cat id_rsa.pub</div><div class="line"></div><div class="line">ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAmzM2RosSFanpxK+d3Eagt3Wicef9QbgH1x4yH3MFg2</div><div class="line">+6vIuFXchl+L3gMZabWH3BzKpBwoJICg8q9k4N8nOf5LNPtIp74hnEj/1b9Nh7OLrri82Ao6FYEdkC</div><div class="line">0NVsfhKlqha10MQrYxctimabtuKZdoUvv0knSawwvql2mvCIDra2D2350ICycZi0Fg1QULF3QdDF8E</div><div class="line">mtnvso1a5a9jgzf3tyHX6+r7lGnA+Ifzr8bxC4sqZ+aN0R7dn4uqQETF7l+n16dd370Efvbvj8CabZ</div><div class="line">qVs7r5j/fdltcmSrH3i97Yfq0XsM0CIxltOIb8+MhkRzHAXdjWY51LyfyHtyysbgHw==</div><div class="line">you@email.com</div></pre></td></tr></table></figure></p>
+<p>关于在多种操作系统中生成 SSH 密钥的更深入教程，请参阅 GitHub 的 SSH 密钥指南：<a href="https://help.github.com/articles/generating-ssh-keys" target="_blank" rel="external"><em>https://help.github.com/articles/generating-ssh-keys</em></a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先确认自己的系统中是否已经拥有密钥。在默认情况下SSH的密钥存储在其&lt;code&gt;~/.ssh&lt;/code&gt;目录下。可以使用以下命令进入目录并列出内容：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ cd ~/.ssh&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ ls&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;id_rsa  id_rsa.pub  known_hosts&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;其中&lt;code&gt;id_rsa&lt;/code&gt;和&lt;code&gt;id_rsa.pub&lt;/code&gt;就是存储密钥的文件，带有&lt;code&gt;.pub&lt;/code&gt;后缀的是公钥，另外一个则是私钥。如果存在这些文件，则可以直接用&lt;code&gt;$ cat id_rsa.pub&lt;/code&gt;来读取密钥内容。&lt;br&gt;如果找不到这样的文件（或者不存在&lt;code&gt;~/.ssh&lt;/code&gt;目录），则可以通过&lt;code&gt;$ ssh-keygen&lt;/code&gt;来创建它们。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ ssh-keygen -t rsa -C `you@email.com`&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Generating public/private rsa key pair.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Enter file in which to save the key (/home/schacon/.ssh/id_rsa):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Created directory &amp;apos;/home/schacon/.ssh&amp;apos;.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Enter passphrase (empty for no passphrase):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Enter same passphrase again:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Your identification has been saved in /home/schacon/.ssh/id_rsa.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Your public key has been saved in /home/schacon/.ssh/id_rsa.pub.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;The key fingerprint is:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;d0:82:24:8e:d7:f1:bb:9b:33:53:96:93:49:da:9b:e3 you@email.com&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="转载" scheme="http://hellowangwei.cn/blog/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="git" scheme="http://hellowangwei.cn/blog/tags/git/"/>
+    
+      <category term="SSH" scheme="http://hellowangwei.cn/blog/tags/SSH/"/>
+    
+      <category term="加密" scheme="http://hellowangwei.cn/blog/tags/%E5%8A%A0%E5%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>对于 Web 设计师和开发者非常有用的 25 个 Chrome 扩展应用</title>
+    <link href="http://hellowangwei.cn/blog/2017/06/15/%E5%AF%B9%E4%BA%8E-Web-%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%92%8C%E5%BC%80%E5%8F%91%E8%80%85%E9%9D%9E%E5%B8%B8%E6%9C%89%E7%94%A8%E7%9A%84-25-%E4%B8%AA-Chrome-%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/"/>
+    <id>http://hellowangwei.cn/blog/2017/06/15/对于-Web-设计师和开发者非常有用的-25-个-Chrome-扩展应用/</id>
+    <published>2017-06-15T02:10:33.000Z</published>
+    <updated>2017-06-16T05:50:10.278Z</updated>
+    
+    <content type="html"><![CDATA[<p>尽管 Chrome 的开发者工具给你足够多的实用工具来覆盖你的设计和开发需求，但也可以通过添加免费的扩展应用去进一步扩展浏览器的功能。根据你的需要，并选择完美的扩展，你可以轻松地创建一个个性化的开发环境，这会大大提高你的开发效率。</p>
+<p>要介绍的 25 个 Chrome 扩展应该我们为你选择分为以下几类：<a href="#前端扩展">前端扩展</a>，<a href="#在线编辑">在线编辑</a>，<a href="#验证器与性能相关">验证器与性能相关</a>，<a href="#测量扩展应用">测量扩展应用</a>，<a href="#颜色工具">颜色工具</a>，<a href="#字体测试工具">字体测试工具</a>和 <a href="#很有用的实用性扩展应用">很有用的实用性扩展应用</a>。</p>
+<h1 id="前端扩展"><a href="#前端扩展" class="headerlink" title="前端扩展"></a>前端扩展</h1><h2 id="SnappySnippet"><a href="#SnappySnippet" class="headerlink" title="SnappySnippet"></a>SnappySnippet</h2><p><strong><a href="https://chrome.google.com/webstore/detail/snappysnippet/blfngdefapoapkcdibbdkigpeaffgcil?hl=en" target="_blank" rel="external">SnappySnippet</a></strong> 把 CSS 和 HTML 从 DOM 树里提取出来，然后发送到 CodePen，jsFiddle 或 JS Bin 上。<br><img src="http://i1.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-01.png?w=520"></p>
+<h2 id="MagiCSS"><a href="#MagiCSS" class="headerlink" title="MagiCSS"></a>MagiCSS</h2><p><strong><a href="https://chrome.google.com/webstore/detail/magicss-live-css-editor/ifhikkcafabcgolfjegfcgloomalapol?hl=en" target="_blank" rel="external">MagiCSS</a></strong> 一个拥有内置编辑器的在线 CSS 编辑扩展应用，具有美化和减小 CSS 的功能。同时还允许创建 Github Gist。<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-02.png?w=520"></p>
+<h2 id="CSS-Dig"><a href="#CSS-Dig" class="headerlink" title="CSS Dig"></a>CSS Dig</h2><p><strong><a href="https://chrome.google.com/webstore/detail/css-dig/lpnhmlhomomelfkcjnkcacofhmggjmco" target="_blank" rel="external">CSS Dig</a></strong> 能够在大多数的网站上找到和组织样式表和样式块，给你一个简单的方法来分析和计划重构的代码。<br><img src="http://i1.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-03.png?w=520"></p>
+<h2 id="CSSViewer"><a href="#CSSViewer" class="headerlink" title="CSSViewer"></a>CSSViewer</h2><p><strong><a href="https://chrome.google.com/webstore/detail/cssviewer/ggfgijbpiheegefliciemofobhmofgce?hl=en" target="_blank" rel="external">CSSViewer</a></strong> 能集成很多工具和扩展程序去执行一个简单的任务。这使得它们更好地发挥功能。但没有 Chrome 扩展应用集合能在不集成的情况下可以完成这种功能。用法很简单，你只需点击工具栏的图标，然后将鼠标移到你想审查的元素上就可以了。<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-04.png?w=520"></p>
+<a id="more"></a>
+<h2 id="CSS-Shack"><a href="#CSS-Shack" class="headerlink" title="CSS-Shack"></a>CSS-Shack</h2><p><strong><a href="https://chrome.google.com/webstore/detail/css-shack/geiccgjkigajaicecnhdokggninehdlp" target="_blank" rel="external">CSS-Shack</a></strong> 帮助你创建图层样式（就像你用如 PS 一样），并能生成一个 CSS 文件。<br><img src="http://i1.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-05.png?w=520"></p>
+<h2 id="CSS3-Generator"><a href="#CSS3-Generator" class="headerlink" title="CSS3 Generator"></a>CSS3 Generator</h2><p><strong><a href="https://chrome.google.com/webstore/detail/css3-generator/dmlgmehijaodgkkooghkknjjkddahmej?hl=en-GB" target="_blank" rel="external">CSS3 Generator</a></strong> 如名，可以帮助你生成 CSS3 代码。<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-06.png?w=520"></p>
+<h2 id="CSS-Shapes-Editor"><a href="#CSS-Shapes-Editor" class="headerlink" title="CSS Shapes Editor"></a>CSS Shapes Editor</h2><p><strong><a href="https://chrome.google.com/webstore/detail/css-shapes-editor/nenndldnbcncjmeacmnondmkkfedmgmp" target="_blank" rel="external">CSS Shapes Editor</a></strong> 在线编辑 CSS 形状的值。<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-07.png?w=520"></p>
+<h1 id="在线编辑"><a href="#在线编辑" class="headerlink" title="在线编辑"></a>在线编辑</h1><h2 id="WordPress-Style-Editor"><a href="#WordPress-Style-Editor" class="headerlink" title="WordPress Style Editor"></a>WordPress Style Editor</h2><p><strong><a href="https://chrome.google.com/webstore/detail/wordpress-style-editor/bgdpllcnhcmpfcheafdhimpklhjoommn?hl=en" target="_blank" rel="external">WordPress Style Editor</a></strong> 支持在线审查和编辑你的 WordPress 的样式。<br><img src="http://i0.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-08.png?w=520"></p>
+<h2 id="PageEdit"><a href="#PageEdit" class="headerlink" title="PageEdit"></a>PageEdit</h2><p><strong><a href="https://chrome.google.com/webstore/detail/pageedit/ebkclgoaabaibghklgknnjdemknjaeic" target="_blank" rel="external">PageEdit</a></strong> 能把 Chrome 变成所见即所得的编辑器，你可以用它编辑任何网页。</p>
+<iframe width="640" height="400" src="https://www.youtube.com/embed/Ts4bSR1hpxg" frameborder="0" allowfullscreen></iframe>
+
+<h1 id="验证器与性能相关"><a href="#验证器与性能相关" class="headerlink" title="验证器与性能相关"></a>验证器与性能相关</h1><h2 id="Perfmap"><a href="#Perfmap" class="headerlink" title="Perfmap"></a>Perfmap</h2><p><strong><a href="https://chrome.google.com/webstore/detail/perfmap/hgpnhiajcdppfbogcpfdgcceepgkhdmk?hl=en&amp;gl=GB" target="_blank" rel="external">Perfmap</a></strong> 它用 Resource Timing API 来创建一个网站的前端的性能的热图检查的定时器，使得可以在浏览器中查看加载的资源。<br><img src="http://i0.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-12.png?w=520"></p>
+<h2 id="Validity"><a href="#Validity" class="headerlink" title="Validity"></a>Validity</h2><p><strong><a href="https://chrome.google.com/webstore/detail/validity/bbicmjjbohdfglopkidebfccilipgeif?hl=en-GB" target="_blank" rel="external">Validity</a></strong> 帮助你验证任何一个网页。可以在 console 页查看错误的数量和详情。<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-13.png?w=520"></p>
+<h2 id="Web-Developer-Checklist"><a href="#Web-Developer-Checklist" class="headerlink" title="Web Developer Checklist"></a>Web Developer Checklist</h2><p><strong><a href="https://chrome.google.com/webstore/detail/web-developer-checklist/iahamcpedabephpcgkeikbclmaljebjp" target="_blank" rel="external">Web Developer Checklist</a></strong> 必备的扩展应用，可以查看任何一个网页的报错和反常的问题。<br><img src="http://i1.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-10.png?w=520"></p>
+<h2 id="Bootlint-This-Page"><a href="#Bootlint-This-Page" class="headerlink" title="Bootlint This Page"></a>Bootlint This Page</h2><p><strong><a href="https://chrome.google.com/webstore/detail/bootlint-this-page/cnamjhcdoadndjpjodeclalnmfhkoepb?hl=en&amp;gl=GB" target="_blank" rel="external">Bootlint This Page</a></strong> 在 Chrome 浏览器上显示一个按钮，帮助你查看任何一个基于 BootStrap 的网页的报错。可以在 console 页查看。<br><img src="http://i0.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-11.png?w=520"></p>
+<h2 id="Check-My-Links"><a href="#Check-My-Links" class="headerlink" title="Check My Links"></a>Check My Links</h2><p><strong><a href="https://chrome.google.com/webstore/detail/check-my-links/ojkcdipcgfaekbeaelaapakgnjflfglf" target="_blank" rel="external">Check My Links</a></strong> 扫描网页，并把链接以高亮显示，有效为绿色，无效为红色。没人会喜欢无效的链接！<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-27.png?w=520"></p>
+<h1 id="测量扩展应用"><a href="#测量扩展应用" class="headerlink" title="测量扩展应用"></a>测量扩展应用</h1><h2 id="Page-Ruler"><a href="#Page-Ruler" class="headerlink" title="Page Ruler"></a>Page Ruler</h2><p><strong><a href="https://chrome.google.com/webstore/detail/page-ruler/jlpkojjdgbllmedoapgfodplfhcbnbpn?hl=en" target="_blank" rel="external">Page Ruler</a></strong> 能够在任何网上形成一个画尺，并显示元素的 width，height 和 position。<br><img src="http://i1.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-14.png?w=520"></p>
+<h2 id="Dimensions"><a href="#Dimensions" class="headerlink" title="Dimensions"></a>Dimensions</h2><p><strong><a href="https://chrome.google.com/webstore/detail/dimensions/baocaagndhipibgklemoalmkljaimfdj" target="_blank" rel="external">Dimensions</a></strong> 简单且使用的工具，为你测量屏幕宽度和高度。<br><img src="http://i1.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-15.png?w=520"></p>
+<h1 id="颜色工具"><a href="#颜色工具" class="headerlink" title="颜色工具"></a>颜色工具</h1><h2 id="ColorZilla"><a href="#ColorZilla" class="headerlink" title="ColorZilla"></a>ColorZilla</h2><p><strong><a href="https://chrome.google.com/webstore/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp" target="_blank" rel="external">ColorZilla</a></strong> 起源于 Firefox，但它为 Chrome 增加了多种颜色工具，像吸管，颜色选择器，调色板查看器和梯度生成器。<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-17.png?w=520"></p>
+<h2 id="Color-Tab"><a href="#Color-Tab" class="headerlink" title="Color Tab"></a>Color Tab</h2><p><strong><a href="http://colorhunt.co/tab/" target="_blank" rel="external">Color Tab</a></strong> 在你每次打开一个新标签时，会给你一个美丽的新配色方案。<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-18.png?w=520"></p>
+<h1 id="字体测试工具"><a href="#字体测试工具" class="headerlink" title="字体测试工具"></a>字体测试工具</h1><h2 id="Fontface-Ninja"><a href="#Fontface-Ninja" class="headerlink" title="Fontface Ninja"></a>Fontface Ninja</h2><p><strong><a href="https://chrome.google.com/webstore/detail/fontface-ninja/eljapbgkmlngdpckoiiibecpemleclhh" target="_blank" rel="external">Fontface Ninja</a></strong> 可以识别任何网页的字体，同时给出它的 size 和 line-spacing。帮助你测试和探索新的字体。<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-19.png?w=520"></p>
+<h2 id="Font-Playground"><a href="#Font-Playground" class="headerlink" title="Font Playground"></a>Font Playground</h2><p><strong><a href="https://chrome.google.com/webstore/detail/font-playground/hdpmpnhaoddjelneingmbnhaibbmjgno?hl=en" target="_blank" rel="external">Font Playground</a></strong> 在任何网页上预览 Google 成千上万的字体。<br><img src="http://i0.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-20.png?w=520"></p>
+<h2 id="TypeWonder"><a href="#TypeWonder" class="headerlink" title="TypeWonder"></a>TypeWonder</h2><p><strong><a href="https://chrome.google.com/webstore/detail/typewonder/ohgmapelghofmbacalgamfbejaghdilh" target="_blank" rel="external">TypeWonder</a></strong> 允许你在任何网站测试 web 字体。输入站点 URL 就可以立马预览字体。<br><img src="http://i0.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-21.png?w=520"></p>
+<h1 id="很有用的实用性扩展应用"><a href="#很有用的实用性扩展应用" class="headerlink" title="很有用的实用性扩展应用"></a>很有用的实用性扩展应用</h1><h2 id="Responsive-Web-Design-Tester"><a href="#Responsive-Web-Design-Tester" class="headerlink" title="Responsive Web Design Tester"></a>Responsive Web Design Tester</h2><p><strong><a href="https://chrome.google.com/webstore/detail/responsive-web-design-tes/objclahbaimlfnbjdeobicmmlnbhamkg?hl=en" target="_blank" rel="external">Responsive Web Design Tester</a></strong> 是一个简单的工具，来帮助快速、轻松地测试网站在大多数流行的移动设备上的响应。<br><img src="http://i1.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-22.png?w=520"></p>
+<h2 id="45to75"><a href="#45to75" class="headerlink" title="45to75"></a>45to75</h2><p><strong><a href="https://chrome.google.com/webstore/detail/45to75/efmppndinjbljeellfdkpghgblenbcdd" target="_blank" rel="external">45to75</a></strong> 为保证在所有大小设备上，你的文字是可读的。它可以帮你把句子规定在 45 到 75 个字符之间，从而优化句子长度。<br><img src="http://i1.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-16.png?w=520"></p>
+<h2 id="PerfectPixel"><a href="#PerfectPixel" class="headerlink" title="PerfectPixel"></a>PerfectPixel</h2><p><strong><a href="https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi" target="_blank" rel="external">PerfectPixel</a></strong> 在开发 HTML 时，它会把半透明图像叠加在顶部，允许你在每个像素间进行比较。<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-23.png?w=520"></p>
+<h2 id="ZenHub"><a href="#ZenHub" class="headerlink" title="ZenHub"></a>ZenHub</h2><p><strong><a href="https://chrome.google.com/webstore/detail/zenhub-for-github/ogcgkffhplmphkaahpmffcafajaocjbd" target="_blank" rel="external">ZenHub</a></strong> 为 Github 项目管理应用。有节省时间的特性，如 drap-drop 任务板和 to-do 列表，帮助你提升 Github 的生产效率。<br><img src="http://i0.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-24.png?w=520"></p>
+<h2 id="Instant-Wireframe"><a href="#Instant-Wireframe" class="headerlink" title="Instant Wireframe"></a>Instant Wireframe</h2><p><strong><a href="https://chrome.google.com/webstore/detail/instant-wireframe/pmpmnmbgidlnoamkpmcikaejhmeldnha" target="_blank" rel="external">Instant Wireframe</a></strong> 谁不喜欢漂亮的线框呢？它给为任何一个网页添加线框，同时本地的也可以。<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-25.png?w=520"></p>
+<h2 id="Minimalist-Markdown-Editor"><a href="#Minimalist-Markdown-Editor" class="headerlink" title="Minimalist Markdown Editor"></a>Minimalist Markdown Editor</h2><p><strong><a href="https://chrome.google.com/webstore/detail/minimalist-markdown-edito/pghodfjepegmciihfhdipmimghiakcjf" target="_blank" rel="external">Minimalist Markdown Editor</a></strong> 同步预览 Markdown。可以快速地帮 Markdown 转化成 HTML。<br><img src="http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-26.png?w=520"></p>
+<h2 id="fb-flo"><a href="#fb-flo" class="headerlink" title="fb-flo"></a>fb-flo</h2><p><strong><a href="https://facebook.github.io/fb-flo/" target="_blank" rel="external">fb-flo</a></strong> 由 Facebook 开发，同时也是 Chrome 的扩展应用。使你能够在线编辑 JS，CSS，images 或任何静态资源。</p>
+<h2 id="Web-Developer"><a href="#Web-Developer" class="headerlink" title="Web Developer"></a>Web Developer</h2><p><strong><a href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm" target="_blank" rel="external">Web Developer</a></strong> 如果你现在还没用这个应用，赶紧吧。这是迄今为止最受欢迎的 Chrome 和 Firefox 开发人员扩展应用。它添加了一个超级有用工具到浏览器，每个网页设计师和开发人员，还有你可能甚至不知道你需要的都会需要。</p>
+<h2 id="MySQL-Admin"><a href="#MySQL-Admin" class="headerlink" title="MySQL Admin"></a>MySQL Admin</h2><p><strong><a href="https://chrome.google.com/webstore/detail/chrome-mysql-admin/ndgnpnpakfcdjmpgmcaknimfgcldechn" target="_blank" rel="external">MySQL Admin</a></strong> 为你更好地，更简单地管理 MySQL 数据库。<br><img src="http://i1.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-29.png?w=520"></p>
+<h1 id="完毕！"><a href="#完毕！" class="headerlink" title="完毕！"></a>完毕！</h1><p>想要获取更多的 Chrome 扩展应用，请看 <a href="http://devtoolstips.com/" target="_blank" rel="external">DevTools Tips</a>，这里收集了 Chrome 的开发工具集和基本使用方法。如果你是一个设计师或开发人员，想获取更新最新的设计和开发资讯，请访问 Chrome 的扩展应用 <a href="https://chrome.google.com/webstore/detail/muzli-design-breakfast/glcipcfhmopcgidicgdociohdoicpdfc" target="_blank" rel="external">Muzli</a> 或 <a href="https://chrome.google.com/webstore/detail/panda-4-news-inspiration/haafibkemckmbknhfkiiniobjpgkebko" target="_blank" rel="external">Panda</a>。</p>
+<p>如果你正在寻找 Firefox 的扩展应用，请看：<a href="http://speckyboy.com/2011/05/03/20-essential-firefox-4-addonsextensions-for-web-developers/" target="_blank" rel="external">对于 Web 开发非常有用的 20 个 Firefox 扩展应用</a>。</p>
+<p>之前还有一篇发布在 <a href="http://speckyboy.com/" target="_blank" rel="external">Speckyboy Design Magazine</a> 上的文章是<a href="http://speckyboy.com/2015/12/03/chrome-extensions-web-designers-developers/" target="_blank" rel="external">对于 Web 设计师和开发者非常有用的 20 个 Chrome 扩展应用</a>。</p>
+<p><a href="http://p2html.com/blog/25-chrome-extensions-for-web-designers-developers/" target="_blank" rel="external"><strong>原文链接</strong></a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;尽管 Chrome 的开发者工具给你足够多的实用工具来覆盖你的设计和开发需求，但也可以通过添加免费的扩展应用去进一步扩展浏览器的功能。根据你的需要，并选择完美的扩展，你可以轻松地创建一个个性化的开发环境，这会大大提高你的开发效率。&lt;/p&gt;
+&lt;p&gt;要介绍的 25 个 Chrome 扩展应该我们为你选择分为以下几类：&lt;a href=&quot;#前端扩展&quot;&gt;前端扩展&lt;/a&gt;，&lt;a href=&quot;#在线编辑&quot;&gt;在线编辑&lt;/a&gt;，&lt;a href=&quot;#验证器与性能相关&quot;&gt;验证器与性能相关&lt;/a&gt;，&lt;a href=&quot;#测量扩展应用&quot;&gt;测量扩展应用&lt;/a&gt;，&lt;a href=&quot;#颜色工具&quot;&gt;颜色工具&lt;/a&gt;，&lt;a href=&quot;#字体测试工具&quot;&gt;字体测试工具&lt;/a&gt;和 &lt;a href=&quot;#很有用的实用性扩展应用&quot;&gt;很有用的实用性扩展应用&lt;/a&gt;。&lt;/p&gt;
+&lt;h1 id=&quot;前端扩展&quot;&gt;&lt;a href=&quot;#前端扩展&quot; class=&quot;headerlink&quot; title=&quot;前端扩展&quot;&gt;&lt;/a&gt;前端扩展&lt;/h1&gt;&lt;h2 id=&quot;SnappySnippet&quot;&gt;&lt;a href=&quot;#SnappySnippet&quot; class=&quot;headerlink&quot; title=&quot;SnappySnippet&quot;&gt;&lt;/a&gt;SnappySnippet&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://chrome.google.com/webstore/detail/snappysnippet/blfngdefapoapkcdibbdkigpeaffgcil?hl=en&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SnappySnippet&lt;/a&gt;&lt;/strong&gt; 把 CSS 和 HTML 从 DOM 树里提取出来，然后发送到 CodePen，jsFiddle 或 JS Bin 上。&lt;br&gt;&lt;img src=&quot;http://i1.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-01.png?w=520&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;MagiCSS&quot;&gt;&lt;a href=&quot;#MagiCSS&quot; class=&quot;headerlink&quot; title=&quot;MagiCSS&quot;&gt;&lt;/a&gt;MagiCSS&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://chrome.google.com/webstore/detail/magicss-live-css-editor/ifhikkcafabcgolfjegfcgloomalapol?hl=en&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MagiCSS&lt;/a&gt;&lt;/strong&gt; 一个拥有内置编辑器的在线 CSS 编辑扩展应用，具有美化和减小 CSS 的功能。同时还允许创建 Github Gist。&lt;br&gt;&lt;img src=&quot;http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-02.png?w=520&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;CSS-Dig&quot;&gt;&lt;a href=&quot;#CSS-Dig&quot; class=&quot;headerlink&quot; title=&quot;CSS Dig&quot;&gt;&lt;/a&gt;CSS Dig&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://chrome.google.com/webstore/detail/css-dig/lpnhmlhomomelfkcjnkcacofhmggjmco&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CSS Dig&lt;/a&gt;&lt;/strong&gt; 能够在大多数的网站上找到和组织样式表和样式块，给你一个简单的方法来分析和计划重构的代码。&lt;br&gt;&lt;img src=&quot;http://i1.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-03.png?w=520&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;CSSViewer&quot;&gt;&lt;a href=&quot;#CSSViewer&quot; class=&quot;headerlink&quot; title=&quot;CSSViewer&quot;&gt;&lt;/a&gt;CSSViewer&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://chrome.google.com/webstore/detail/cssviewer/ggfgijbpiheegefliciemofobhmofgce?hl=en&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CSSViewer&lt;/a&gt;&lt;/strong&gt; 能集成很多工具和扩展程序去执行一个简单的任务。这使得它们更好地发挥功能。但没有 Chrome 扩展应用集合能在不集成的情况下可以完成这种功能。用法很简单，你只需点击工具栏的图标，然后将鼠标移到你想审查的元素上就可以了。&lt;br&gt;&lt;img src=&quot;http://i2.wp.com/p2html.com/blog/wp-content/uploads/2015/12/chrome-extension-web-design-04.png?w=520&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="转载" scheme="http://hellowangwei.cn/blog/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="好文分享" scheme="http://hellowangwei.cn/blog/categories/%E8%BD%AC%E8%BD%BD/%E5%A5%BD%E6%96%87%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="译文" scheme="http://hellowangwei.cn/blog/tags/%E8%AF%91%E6%96%87/"/>
+    
+      <category term="Web Development" scheme="http://hellowangwei.cn/blog/tags/Web-Development/"/>
+    
+      <category term="Chrome Extensions" scheme="http://hellowangwei.cn/blog/tags/Chrome-Extensions/"/>
+    
+      <category term="Web Designers" scheme="http://hellowangwei.cn/blog/tags/Web-Designers/"/>
+    
+      <category term="Developers" scheme="http://hellowangwei.cn/blog/tags/Developers/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>20 个交互非常棒的按钮代码</title>
+    <link href="http://hellowangwei.cn/blog/2017/06/15/20-%E4%B8%AA%E4%BA%A4%E4%BA%92%E9%9D%9E%E5%B8%B8%E6%A3%92%E7%9A%84%E6%8C%89%E9%92%AE%E4%BB%A3%E7%A0%81/"/>
+    <id>http://hellowangwei.cn/blog/2017/06/15/20-个交互非常棒的按钮代码/</id>
+    <published>2017-06-15T01:57:22.000Z</published>
+    <updated>2017-06-15T09:41:11.767Z</updated>
+    
+    <content type="html"><![CDATA[<p>你能想象网页中没有按钮吗？我打赌你不会。在网页中，拥有按钮并不奇怪，这些看似很小、主要以矩形表现（如导航栏，版权信息）的东西，其实是网页 UI 中基础之一。它们不仅使链接看起来更有分量、吸引人和鲜明，而且他们还能提高跳转率和用户体验，使之更方便和直观。这些 CTA （Call-to-action：行为召唤）能帮你获得更多的潜在客户和促进业务的扩展。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.noupe.com/wp-content/uploads/2015/10/codesnippets-buttons-teaser_EN.jpg" alt="HOST" title="">
+                </div>
+                <div class="image-caption">HOST</div>
+            </figure>
+<p>按钮的开发需要注意它的形状、颜色、空间、排版和前景，这些都很重要。前四个主要是依赖于网页的主题，而最后一个则是取决于你需要达成的目标。例如，你可以在用户点击后，等待的时间里在按钮上加入转轮点亮的动画；又或是，加入一些更吸引眼球的动画效果。如此一来，添加动画效果可以使按钮产生的效果最大化。那么，接下来为你介绍这 20 个很棒的按钮代码，它们能使按钮更加丰富，且用户体验超好。</p>
+<h1 id="波浪形按钮"><a href="#波浪形按钮" class="headerlink" title="波浪形按钮"></a><a href="http://codepen.io/suez/pen/aOgMxy" target="_blank" rel="external">波浪形按钮</a></h1><p><a href="http://codepen.io/suez/pen/aOgMxy" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/blobs-button.png"><br></a></p>
+<p><strong>作者</strong>：Nikolay Talanov</p>
+<a id="more"></a>
+<h1 id="用-Canvas-和-HTML5-制作的粒子状按钮"><a href="#用-Canvas-和-HTML5-制作的粒子状按钮" class="headerlink" title="用 Canvas 和 HTML5 制作的粒子状按钮"></a><a href="http://codepen.io/igcorreia/pen/vEzmyV" target="_blank" rel="external">用 Canvas 和 HTML5 制作的粒子状按钮</a></h1><p><a href="http://codepen.io/igcorreia/pen/vEzmyV" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/particle-button.png"><br></a></p>
+<p><strong>作者</strong>：Ignacio Correia</p>
+<h1 id="用-Sass-制作的胶状按钮"><a href="#用-Sass-制作的胶状按钮" class="headerlink" title="用 Sass 制作的胶状按钮"></a><a href="http://codepen.io/macreart/pen/mdCHA" target="_blank" rel="external">用 Sass 制作的胶状按钮</a></h1><p><a href="http://codepen.io/macreart/pen/mdCHA" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/gelatin-over-button-effect.png"><br></a></p>
+<p><strong>作者</strong>：François Lesenne</p>
+<h1 id="3D-弹出效果的按钮"><a href="#3D-弹出效果的按钮" class="headerlink" title="3D 弹出效果的按钮"></a><a href="http://codepen.io/ashleynolan/pen/djpCG" target="_blank" rel="external">3D 弹出效果的按钮</a></h1><p><a href="http://codepen.io/ashleynolan/pen/djpCG" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/3d-paper-button.png"><br></a></p>
+<p><strong>作者</strong>：Ashley Nolan</p>
+<h1 id="“Material-Design”-CSS-动画效果的按钮"><a href="#“Material-Design”-CSS-动画效果的按钮" class="headerlink" title="“Material Design” CSS 动画效果的按钮"></a><a href="http://codepen.io/jonbrennecke/pen/xbojLg" target="_blank" rel="external">“Material Design” CSS 动画效果的按钮</a></h1><p><a href="http://codepen.io/jonbrennecke/pen/xbojLg" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/material-design-button-effect.png"><br></a></p>
+<p><strong>作者</strong>：Jon Brennecke</p>
+<h1 id="具有-3D-效果的按钮"><a href="#具有-3D-效果的按钮" class="headerlink" title="具有 3D 效果的按钮"></a><a href="http://codepen.io/drus/pen/IKzqG" target="_blank" rel="external">具有 3D 效果的按钮</a></h1><p><a href="http://codepen.io/drus/pen/IKzqG" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/3d-button.png"><br></a></p>
+<p><strong>作者</strong>：drus unlimited</p>
+<h1 id="关闭按钮效果"><a href="#关闭按钮效果" class="headerlink" title="关闭按钮效果"></a><a href="http://codepen.io/JonasB/pen/MYaMBz" target="_blank" rel="external">关闭按钮效果</a></h1><p><a href="http://codepen.io/JonasB/pen/MYaMBz" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/close-button-ui.png"><br></a></p>
+<p><strong>作者</strong>：Jonas Badalic</p>
+<h1 id="一些时尚的切换效果按钮"><a href="#一些时尚的切换效果按钮" class="headerlink" title="一些时尚的切换效果按钮"></a><a href="http://codepen.io/ashleynolan/pen/wBppKz" target="_blank" rel="external">一些时尚的切换效果按钮</a></h1><p><a href="http://codepen.io/ashleynolan/pen/wBppKz" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/funky-toggle-buttons.png"><br></a></p>
+<p><strong>作者</strong>：Ashley Nolan</p>
+<h1 id="纯-CSS3-效果的按钮"><a href="#纯-CSS3-效果的按钮" class="headerlink" title="纯 CSS3 效果的按钮"></a><a href="http://codepen.io/overlyenginnered/pen/myZVYv" target="_blank" rel="external">纯 CSS3 效果的按钮</a></h1><p><a href="http://codepen.io/overlyenginnered/pen/myZVYv" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/pure-css-button-effects.png"><br></a></p>
+<p><strong>作者</strong>：Overly Engineered</p>
+<h1 id="Hover-效果"><a href="#Hover-效果" class="headerlink" title="Hover 效果"></a><a href="http://codepen.io/deep1808/pen/aOQqqa" target="_blank" rel="external">Hover 效果</a></h1><p><a href="http://codepen.io/deep1808/pen/aOQqqa" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/elegant-hover-effect.png"><br></a></p>
+<p><strong>作者</strong>：Deep</p>
+<h1 id="Jelly-按钮"><a href="#Jelly-按钮" class="headerlink" title="Jelly 按钮"></a><a href="http://codepen.io/ayamflow/pen/Dufxr" target="_blank" rel="external">Jelly 按钮</a></h1><p><a href="http://codepen.io/ayamflow/pen/Dufxr" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/jelly-button.png"><br></a></p>
+<p><strong>作者</strong>：ayamflow</p>
+<h1 id="Hover-效果的按钮"><a href="#Hover-效果的按钮" class="headerlink" title="Hover 效果的按钮"></a><a href="http://codepen.io/thejamespower/pen/OVNYLL" target="_blank" rel="external">Hover 效果的按钮</a></h1><p><a href="http://codepen.io/thejamespower/pen/OVNYLL" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/button-hover-effects.png"><br></a></p>
+<p><strong>作者</strong>：James Power</p>
+<h1 id="Gaming-Button-With-Hover-Effect"><a href="#Gaming-Button-With-Hover-Effect" class="headerlink" title="Gaming Button With Hover Effect"></a><a href="http://codepen.io/kaigth/pen/qiDJL" target="_blank" rel="external">Gaming Button With Hover Effect</a></h1><p><a href="http://codepen.io/kaigth/pen/qiDJL" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/hover-over-effect.png"><br></a></p>
+<p><strong>作者</strong>：kaigth</p>
+<h1 id="分享按钮"><a href="#分享按钮" class="headerlink" title="分享按钮"></a><a href="http://codepen.io/onediv/pen/dkFco" target="_blank" rel="external">分享按钮</a></h1><p><a href="http://codepen.io/onediv/pen/dkFco" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/share-button.png"><br></a></p>
+<p><strong>作者</strong>：Vincent Durand</p>
+<h1 id="Flipside"><a href="#Flipside" class="headerlink" title="Flipside"></a><a href="http://codepen.io/hakimel/pen/ZYRgwB" target="_blank" rel="external">Flipside</a></h1><p><a href="http://codepen.io/hakimel/pen/ZYRgwB" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/flipside.png"><br></a></p>
+<p><strong>作者</strong>：Hakim El Hattab</p>
+<h1 id="粒子按钮效果"><a href="#粒子按钮效果" class="headerlink" title="粒子按钮效果"></a><a href="http://codepen.io/timohausmann/pen/icCer" target="_blank" rel="external">粒子按钮效果</a></h1><p><a href="http://codepen.io/timohausmann/pen/icCer" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/button-with-particle-animation.png"><br></a></p>
+<p><strong>作者</strong>：Timo Hausmann</p>
+<h1 id="CSS3-按钮示例"><a href="#CSS3-按钮示例" class="headerlink" title="CSS3 按钮示例"></a><a href="http://codepen.io/volusion/pen/AgqBf" target="_blank" rel="external">CSS3 按钮示例</a></h1><p><a href="http://codepen.io/volusion/pen/AgqBf" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/ecommerce-buttons.png"><br></a></p>
+<p><strong>作者</strong>：Volusion Services</p>
+<h1 id="很棒的按钮样式和效果"><a href="#很棒的按钮样式和效果" class="headerlink" title="很棒的按钮样式和效果"></a><a href="http://tympanus.net/codrops/2015/02/26/inspiration-button-styles-effects/" target="_blank" rel="external">很棒的按钮样式和效果</a></h1><p><a href="http://tympanus.net/codrops/2015/02/26/inspiration-button-styles-effects/" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/series-of-button-effects.png"><br></a></p>
+<p><strong>作者</strong>：Mary Lou</p>
+<h1 id="创意按钮样式"><a href="#创意按钮样式" class="headerlink" title="创意按钮样式"></a><a href="http://tympanus.net/codrops/2013/06/13/creative-button-styles/" target="_blank" rel="external">创意按钮样式</a></h1><p><a href="http://tympanus.net/codrops/2013/06/13/creative-button-styles/" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/creative-buttons.png"><br></a></p>
+<p><strong>作者</strong>：Mary Lou</p>
+<h1 id="3D-动画效果的按钮"><a href="#3D-动画效果的按钮" class="headerlink" title="3D 动画效果的按钮"></a><a href="http://codepen.io/1forhlol/pen/VYrxOP" target="_blank" rel="external">3D 动画效果的按钮</a></h1><p><a href="http://codepen.io/1forhlol/pen/VYrxOP" target="_blank" rel="external"><br>  <img src="http://www.noupe.com/wp-content/uploads/2015/10/creative-3d-buttons.png"><br></a></p>
+<p><strong>作者</strong>：Zachary Minner</p>
+<p><a href="http://www.noupe.com/design/20-code-snippets-for-interactive-buttons-93374.html" target="_blank" rel="external"><strong>原文链接</strong></a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;你能想象网页中没有按钮吗？我打赌你不会。在网页中，拥有按钮并不奇怪，这些看似很小、主要以矩形表现（如导航栏，版权信息）的东西，其实是网页 UI 中基础之一。它们不仅使链接看起来更有分量、吸引人和鲜明，而且他们还能提高跳转率和用户体验，使之更方便和直观。这些 CTA （Call-to-action：行为召唤）能帮你获得更多的潜在客户和促进业务的扩展。&lt;/p&gt;
+&lt;figure class=&quot;image-bubble&quot;&gt;
+                &lt;div class=&quot;img-lightbox&quot;&gt;
+                    &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
+                    &lt;img src=&quot;http://www.noupe.com/wp-content/uploads/2015/10/codesnippets-buttons-teaser_EN.jpg&quot; alt=&quot;HOST&quot; title=&quot;&quot;&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;image-caption&quot;&gt;HOST&lt;/div&gt;
+            &lt;/figure&gt;
+&lt;p&gt;按钮的开发需要注意它的形状、颜色、空间、排版和前景，这些都很重要。前四个主要是依赖于网页的主题，而最后一个则是取决于你需要达成的目标。例如，你可以在用户点击后，等待的时间里在按钮上加入转轮点亮的动画；又或是，加入一些更吸引眼球的动画效果。如此一来，添加动画效果可以使按钮产生的效果最大化。那么，接下来为你介绍这 20 个很棒的按钮代码，它们能使按钮更加丰富，且用户体验超好。&lt;/p&gt;
+&lt;h1 id=&quot;波浪形按钮&quot;&gt;&lt;a href=&quot;#波浪形按钮&quot; class=&quot;headerlink&quot; title=&quot;波浪形按钮&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://codepen.io/suez/pen/aOgMxy&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;波浪形按钮&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;http://codepen.io/suez/pen/aOgMxy&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;br&gt;  &lt;img src=&quot;http://www.noupe.com/wp-content/uploads/2015/10/blobs-button.png&quot;&gt;&lt;br&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;作者&lt;/strong&gt;：Nikolay Talanov&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="转载" scheme="http://hellowangwei.cn/blog/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+      <category term="好文分享" scheme="http://hellowangwei.cn/blog/categories/%E8%BD%AC%E8%BD%BD/%E5%A5%BD%E6%96%87%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="译文" scheme="http://hellowangwei.cn/blog/tags/%E8%AF%91%E6%96%87/"/>
+    
+      <category term="button" scheme="http://hellowangwei.cn/blog/tags/button/"/>
+    
+      <category term="interactive" scheme="http://hellowangwei.cn/blog/tags/interactive/"/>
+    
+      <category term="web" scheme="http://hellowangwei.cn/blog/tags/web/"/>
+    
+  </entry>
+  
+</feed>

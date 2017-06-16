@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>生成SSH keys | WangWei&#39;blog | 越努力•越幸运</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="git,SSH,加密">
+    <meta name="description" content="首先确认自己的系统中是否已经拥有密钥。在默认情况下SSH的密钥存储在其~/.ssh目录下。可以使用以下命令进入目录并列出内容：1234$ cd ~/.ssh$ lsid_rsa  id_rsa.pub  known_hosts 其中id_rsa和id_rsa.pub就是存储密钥的文件，带有.pub后缀的是公钥，另外一个则是私钥。如果存在这些文件，则可以直接用$ cat id_rsa.pub来读取密">
+<meta name="keywords" content="git,SSH,加密">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成SSH keys">
+<meta property="og:url" content="http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/index.html">
+<meta property="og:site_name" content="WangWei&#39;blog">
+<meta property="og:description" content="首先确认自己的系统中是否已经拥有密钥。在默认情况下SSH的密钥存储在其~/.ssh目录下。可以使用以下命令进入目录并列出内容：1234$ cd ~/.ssh$ lsid_rsa  id_rsa.pub  known_hosts 其中id_rsa和id_rsa.pub就是存储密钥的文件，带有.pub后缀的是公钥，另外一个则是私钥。如果存在这些文件，则可以直接用$ cat id_rsa.pub来读取密">
+<meta property="og:updated_time" content="2017-06-15T09:33:24.772Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="生成SSH keys">
+<meta name="twitter:description" content="首先确认自己的系统中是否已经拥有密钥。在默认情况下SSH的密钥存储在其~/.ssh目录下。可以使用以下命令进入目录并列出内容：1234$ cd ~/.ssh$ lsid_rsa  id_rsa.pub  known_hosts 其中id_rsa和id_rsa.pub就是存储密钥的文件，带有.pub后缀的是公钥，另外一个则是私钥。如果存在这些文件，则可以直接用$ cat id_rsa.pub来读取密">
+    
+        <link rel="alternate" type="application/atom+xml" title="WangWei&#39;blog" href="/blog/atom.xml">
+    
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/brand.jpg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Wang Wei</h5>
+          <a href="mailto:380902396@qq.com" title="380902396@qq.com" class="mail">380902396@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://hellowangwei.cn"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hellowangwei" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3911516398" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">生成SSH keys</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">生成SSH keys</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-15T07:04:33.000Z" itemprop="datePublished" class="page-time">
+  2017-06-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/转载/">转载</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-生成SSH-keys"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">生成SSH keys</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-15 15:04:33" datetime="2017-06-15T07:04:33.000Z"  itemprop="datePublished">2017-06-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/转载/">转载</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>首先确认自己的系统中是否已经拥有密钥。在默认情况下SSH的密钥存储在其<code>~/.ssh</code>目录下。可以使用以下命令进入目录并列出内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd ~/.ssh</div><div class="line">$ ls</div><div class="line"></div><div class="line">id_rsa  id_rsa.pub  known_hosts</div></pre></td></tr></table></figure></p>
+<p>其中<code>id_rsa</code>和<code>id_rsa.pub</code>就是存储密钥的文件，带有<code>.pub</code>后缀的是公钥，另外一个则是私钥。如果存在这些文件，则可以直接用<code>$ cat id_rsa.pub</code>来读取密钥内容。<br>如果找不到这样的文件（或者不存在<code>~/.ssh</code>目录），则可以通过<code>$ ssh-keygen</code>来创建它们。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C `you@email.com`</div><div class="line"></div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file in which to save the key (/home/schacon/.ssh/id_rsa):</div><div class="line">Created directory &apos;/home/schacon/.ssh&apos;.</div><div class="line">Enter passphrase (empty for no passphrase):</div><div class="line">Enter same passphrase again:</div><div class="line">Your identification has been saved in /home/schacon/.ssh/id_rsa.</div><div class="line">Your public key has been saved in /home/schacon/.ssh/id_rsa.pub.</div><div class="line">The key fingerprint is:</div><div class="line">d0:82:24:8e:d7:f1:bb:9b:33:53:96:93:49:da:9b:e3 you@email.com</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>首先 <code>$ ssh-keygen</code>会确认密钥的存储位置（默认是<code>.ssh/id_rsa</code>），然后它会要求你输入两次密钥口令。如果你不想在使用密钥时输入口令，将其留空即可（为了方便以后操作，建议不设置密码）。</p>
+<p>在完成上述操作之后即可获得SSH key，获得的公钥大概是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ cat id_rsa.pub</div><div class="line"></div><div class="line">ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAmzM2RosSFanpxK+d3Eagt3Wicef9QbgH1x4yH3MFg2</div><div class="line">+6vIuFXchl+L3gMZabWH3BzKpBwoJICg8q9k4N8nOf5LNPtIp74hnEj/1b9Nh7OLrri82Ao6FYEdkC</div><div class="line">0NVsfhKlqha10MQrYxctimabtuKZdoUvv0knSawwvql2mvCIDra2D2350ICycZi0Fg1QULF3QdDF8E</div><div class="line">mtnvso1a5a9jgzf3tyHX6+r7lGnA+Ifzr8bxC4sqZ+aN0R7dn4uqQETF7l+n16dd370Efvbvj8CabZ</div><div class="line">qVs7r5j/fdltcmSrH3i97Yfq0XsM0CIxltOIb8+MhkRzHAXdjWY51LyfyHtyysbgHw==</div><div class="line">you@email.com</div></pre></td></tr></table></figure></p>
+<p>关于在多种操作系统中生成 SSH 密钥的更深入教程，请参阅 GitHub 的 SSH 密钥指南：<a href="https://help.github.com/articles/generating-ssh-keys" target="_blank" rel="external"><em>https://help.github.com/articles/generating-ssh-keys</em></a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-06-15T09:33:24.772Z" itemprop="dateUpdated">2017-06-15 17:33:24</time>
+</span><br>
+
+
+        
+        <br><b style="color:#f66">版权声明</b> - Wangwei，转载请表明出处：<br><a href="/blog/2017/06/15/生成SSH-keys/" target="_blank" rel="external">http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/</a>
+        
+    </div>
+    <footer>
+        <a href="http://hellowangwei.cn/blog">
+            <img src="/blog/img/avatar.jpg" alt="Wang Wei">
+            Wang Wei
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/SSH/">SSH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/加密/">加密</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/&title=《生成SSH keys》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/&title=《生成SSH keys》 — WangWei'blog&source=首先确认自己的系统中是否已经拥有密钥。在默认情况下SSH的密钥存储在其~/.ssh目录下。可以使用以下命令进入目录并列出内容：1234$ cd ~/.ss..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《生成SSH keys》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CSS 的使用中你可能不知道的 7 件事</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2017/06/15/对于-Web-设计师和开发者非常有用的-25-个-Chrome-扩展应用/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">对于 Web 设计师和开发者非常有用的 25 个 Chrome 扩展应用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/index.html',
+        sourceId: '生成SSH-keys',
+        productKey: '00c942fa607846efad6e1357838ea8df',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/blog/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Wang Wei &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/&title=《生成SSH keys》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/&title=《生成SSH keys》 — WangWei'blog&source=首先确认自己的系统中是否已经拥有密钥。在默认情况下SSH的密钥存储在其~/.ssh目录下。可以使用以下命令进入目录并列出内容：1234$ cd ~/.ss..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《生成SSH keys》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aQVLEMAwEwP3/p5cHQMKMnBzidE4UBYs7h0GW9PnEzzd4zn/+/JN//9bnjgcDA+OxjORw+bGOjnj+nfzvHp4BAwPjBYwkChNS/lKSwE3OhoGBgTELyjyCz18NBgYGxgpjJS7bcMfAwMBYKebyK+55KZm8msvu4hgYGA9kXBWId3x9y3wDAwPjUYxv+bSBm3ynDdk//hYGBsbWjDzgVgrHtkwcfgIGBsYLGLNFh3wYmRedw0UxDAyMTRltCTiL0bbgaxc+MDAw9mYkbf314eXKKkbxKjEwMF7AWCkfbxk3tqfFwMDYlJEvYF3VaGvHolFkY2BgbM1YHwzkLf78knwe4ocnx8DA2JSx0gJrlzOuWrMouoYYGBjbMZK21+wQszljUqoWh8PAwHg4oy3LzkvJpNHWjhDq2hYDA2MjRnv09uKaX2vza3AUuxgYGBsx8nDMRwItpo3apYzHwMB4IKMdN7ZlYjsSyMeZQyQGBsZGjLw1P2vStSsXl/0/wcDAeCwjD80ceVWYFq8SAwPjNYx/1hpGi1/teDI/VfSmMTAwtmbMCrX1ltzwMoyBgbEp41s+5xHZNsUSZNRcw8DA2JqxMhjIP3TWpLsjsjEwMJ7LaBtbydW0Xf+ajUsxMDDexpgNF2eDz/X4PgxcDAwMjCBAkwIxWchor80YGBgY7aLqymJZu4SBgYHxHsZ6STcbf+YBfVm7DQMD44GMWXM/aaK1a17t0BQDA+MFjB8bkCLgoTNRAgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'hellowangwei';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'hellowangwei';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

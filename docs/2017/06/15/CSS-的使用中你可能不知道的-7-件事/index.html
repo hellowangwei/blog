@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>CSS 的使用中你可能不知道的 7 件事 | WangWei&#39;blog | 越努力•越幸运</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="译文,css,features,front-end">
+    <meta name="description" content="无论你信不信，JavaScript 和 CSS 已经开始重叠，并为 CSS 增加了更多的功能。当我在写 CSS 与 JavaScript 交互中你可能不知道的 5 种方式的时候，读者对于 CSS 与 JavaScript 已经重叠的事感到很惊讶。那么今天，我会着重为你介绍 7 个可以通过 CSS 完成的任务 —— 不使用 JavaScript 或图像处理！ CSS @supports每个优秀的前端">
+<meta name="keywords" content="译文,css,features,front-end">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS 的使用中你可能不知道的 7 件事">
+<meta property="og:url" content="http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/index.html">
+<meta property="og:site_name" content="WangWei&#39;blog">
+<meta property="og:description" content="无论你信不信，JavaScript 和 CSS 已经开始重叠，并为 CSS 增加了更多的功能。当我在写 CSS 与 JavaScript 交互中你可能不知道的 5 种方式的时候，读者对于 CSS 与 JavaScript 已经重叠的事感到很惊讶。那么今天，我会着重为你介绍 7 个可以通过 CSS 完成的任务 —— 不使用 JavaScript 或图像处理！ CSS @supports每个优秀的前端">
+<meta property="og:updated_time" content="2017-06-15T09:41:11.796Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS 的使用中你可能不知道的 7 件事">
+<meta name="twitter:description" content="无论你信不信，JavaScript 和 CSS 已经开始重叠，并为 CSS 增加了更多的功能。当我在写 CSS 与 JavaScript 交互中你可能不知道的 5 种方式的时候，读者对于 CSS 与 JavaScript 已经重叠的事感到很惊讶。那么今天，我会着重为你介绍 7 个可以通过 CSS 完成的任务 —— 不使用 JavaScript 或图像处理！ CSS @supports每个优秀的前端">
+    
+        <link rel="alternate" type="application/atom+xml" title="WangWei&#39;blog" href="/blog/atom.xml">
+    
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/brand.jpg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Wang Wei</h5>
+          <a href="mailto:380902396@qq.com" title="380902396@qq.com" class="mail">380902396@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://hellowangwei.cn"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hellowangwei" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3911516398" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CSS 的使用中你可能不知道的 7 件事</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CSS 的使用中你可能不知道的 7 件事</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-15T07:50:56.000Z" itemprop="datePublished" class="page-time">
+  2017-06-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/转载/">转载</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/转载/好文分享/">好文分享</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CSS-supports"><span class="post-toc-number">1.</span> <span class="post-toc-text">CSS @supports</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CSS-Filters"><span class="post-toc-number">2.</span> <span class="post-toc-text">CSS Filters</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Pointer-Events-和点击事件"><span class="post-toc-number">3.</span> <span class="post-toc-text">Pointer Events 和点击事件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Slide-Down-amp-Slide-Up"><span class="post-toc-number">4.</span> <span class="post-toc-text">Slide Down & Slide Up</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CSS-Counters"><span class="post-toc-number">5.</span> <span class="post-toc-text">CSS Counters</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Unicode-CSS-Classes"><span class="post-toc-number">6.</span> <span class="post-toc-text">Unicode CSS Classes</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CSS-Circles"><span class="post-toc-number">7.</span> <span class="post-toc-text">CSS Circles</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-CSS-的使用中你可能不知道的-7-件事"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CSS 的使用中你可能不知道的 7 件事</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-15 15:50:56" datetime="2017-06-15T07:50:56.000Z"  itemprop="datePublished">2017-06-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/转载/">转载</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/转载/好文分享/">好文分享</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>无论你信不信，JavaScript 和 CSS 已经开始重叠，并为 CSS 增加了更多的功能。当我在写 <a href="https://davidwalsh.name/ways-css-javascript-interact" target="_blank" rel="external">CSS 与 JavaScript 交互中你可能不知道的 5 种方式</a>的时候，读者对于 CSS 与 JavaScript 已经重叠的事感到很惊讶。那么今天，我会着重为你介绍 7 个可以通过 CSS 完成的任务 —— 不使用 JavaScript 或图像处理！</p>
+<h1 id="CSS-supports"><a href="#CSS-supports" class="headerlink" title="CSS @supports"></a><a href="https://davidwalsh.name/css-supports" target="_blank" rel="external">CSS @supports</a></h1><p>每个优秀的前端工程师都会在使用某个特性前测试一下，确保是否在浏览器中可以使用。而这类测试通常是由 JavaScript 完成的，当然，也有很多人用 Modernizr（拥有很多很好功能的测试工具）来测试特性。那么现在有一个 CSS 新的 API 可以让你去做特性测试：<a href="https://davidwalsh.name/css-supports" target="_blank" rel="external">@supports</a>，下面的例子将简单地教你如何使用：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">/* basic usage */</div><div class="line">@supports(prop:value) &#123;</div><div class="line">  /* more styles */</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* real usage */</div><div class="line">@supports (display: flex) &#123;</div><div class="line">  div &#123; display: flex; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* testing prefixes too */</div><div class="line">@supports (display: -webkit-flex) or</div><div class="line">          (display: -moz-flex) or</div><div class="line">          (display: flex) &#123;</div><div class="line"></div><div class="line">    section &#123;</div><div class="line">      display: -webkit-flex;</div><div class="line">      display: -moz-flex;</div><div class="line">      display: flex;</div><div class="line">      float: none;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>@supports 这个新的特性也有一个相对应的 JavaScript 方式，但这个特性还在实验阶段，希望我们可以很快用到！</p>
+<h1 id="CSS-Filters"><a href="#CSS-Filters" class="headerlink" title="CSS Filters"></a><a href="https://davidwalsh.name/css-filters" target="_blank" rel="external">CSS Filters</a></h1><p>你可以写一个服务去修改图片的颜色，同时还可以把它卖给 Facebook 获得大量的钱！当然，写一个图片过滤器功能只是一个简单化的实现，并非一门科学。在 Mozilla 的第一周，我写了一个<a href="https://github.com/darkwing/fotofilter" target="_blank" rel="external">小的应用</a>（这让我赢了比赛，BTW…就说说而已），这个应用使用了一些 JS-base 的数学方法并使用 canvas 去做图片过滤器。这很麻烦，但是现在我们可以<a href="https://davidwalsh.name/css-filters" target="_blank" rel="external">用 CSS 的特性去完成这一功能</a>！</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* simple filter */</span></div><div class="line"><span class="selector-class">.myElement</span> &#123;</div><div class="line">  <span class="attribute">-webkit-filter</span>: <span class="built_in">blur</span>(2px);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* advanced filter */</span></div><div class="line"><span class="selector-class">.myElement</span> &#123;</div><div class="line">  <span class="attribute">-webkit-filter</span>: <span class="built_in">blur</span>(2px) grayscale (.<span class="number">5</span>) <span class="built_in">opacity</span>(0.8) <span class="built_in">hue-rotate</span>(120deg);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这类的过滤功能只是创建一个图片的原型，并且不会保存和导出来完成过滤器的功能。这对于图片管理或想处理任何一张图片来说很方便！</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/css-filters.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<h1 id="Pointer-Events-和点击事件"><a href="#Pointer-Events-和点击事件" class="headerlink" title="Pointer Events 和点击事件"></a><a href="https://davidwalsh.name/pointer-events" target="_blank" rel="external">Pointer Events 和点击事件</a></h1><p><a href="https://davidwalsh.name/pointer-events" target="_blank" rel="external">CSS 特性中的 <code>pointer-events</code></a> 提供了一个方法，能使一个元素 disable，即在用户点击某个元素时，不触发它在 JavaScript 中写的点击事件：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* do nothing when clicked or activated */</span></div><div class="line"><span class="selector-class">.disabled</span> &#123; <span class="attribute">pointer-events</span>: none; &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* this will _not_ fire because of the pointer-events: none application */</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"disabled-element"</span>).addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">  alert(<span class="string">"Clicked!"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在上述的例子中，由于 <code>pointer-events</code> 的值是 <code>none</code>，而使点击事件不被触发。大有用处的是，让你不必到处去检查类名或属性，来确认哪一个是 disabled 的了。</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/pointer-events.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<h1 id="Slide-Down-amp-Slide-Up"><a href="#Slide-Down-amp-Slide-Up" class="headerlink" title="Slide Down &amp; Slide Up"></a><a href="https://davidwalsh.name/css-slide" target="_blank" rel="external">Slide Down &amp; Slide Up</a></h1><p>CSS 使我们能够创建转换和动画，但通常我们需要一个 JavaScript 库帮助我们实现。例如一个比较流行的动画效果<a href="https://davidwalsh.name/css-slide" target="_blank" rel="external"> slide up 和 silde down</a>，大概很多人都不知道这个可以只用 CSS 实现吧！</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* slider in open state */</span></div><div class="line"><span class="selector-class">.slider</span> &#123;</div><div class="line">  <span class="attribute">overflow-y</span>: hidden;</div><div class="line">  <span class="attribute">max-height</span>: <span class="number">500px</span>; <span class="comment">/* approximate max height */</span></div><div class="line"></div><div class="line">  <span class="attribute">transition-property</span>: all;</div><div class="line">  <span class="attribute">transition-duration</span>: .<span class="number">5s</span>;</div><div class="line">  <span class="attribute">transition-timing-function</span>: <span class="built_in">cubic-bezier</span>(0, 1, 0.5, 1);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* close it with the "closed" class */</span></div><div class="line"><span class="selector-class">.slider</span><span class="selector-class">.closed</span> &#123;</div><div class="line">  <span class="attribute">max-height</span>: <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>很聪明地使用了 <code>max-height</code> 来控制元素的展开和收缩。</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/css-slide.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<h1 id="CSS-Counters"><a href="#CSS-Counters" class="headerlink" title="CSS Counters"></a><a href="https://davidwalsh.name/css-counters" target="_blank" rel="external">CSS Counters</a></h1><p>我们不禁地问，“counter” 在网上意味着什么呢？但是 <code>CSS Counters</code> 就是另外一回事了。这个特性可以把一个 counter 加到元素中，通过 <code>:before</code> 或 <code>:after</code> ：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* initialize the counter */</span></div><div class="line"><span class="selector-tag">ol</span><span class="selector-class">.slides</span> &#123;</div><div class="line">  <span class="attribute">counter-reset</span>: slideNum;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* increment the counter */</span></div><div class="line"><span class="selector-tag">ol</span><span class="selector-class">.slides</span> &gt; <span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">counter-increment</span>: slideNum;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* display the counter value */</span></div><div class="line"><span class="selector-tag">ol</span><span class="selector-class">.slides</span> <span class="selector-tag">li</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"["</span> <span class="built_in">counter</span>(slideNum) <span class="string">"]"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通常这个会在一些模块或是列表中用到。</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/css-counters.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<h1 id="Unicode-CSS-Classes"><a href="#Unicode-CSS-Classes" class="headerlink" title="Unicode CSS Classes"></a><a href="https://davidwalsh.name/unicode-css-classes" target="_blank" rel="external">Unicode CSS Classes</a></h1><p>有大量的文章说明，去教你如何对 CSS 的类命名。但你应该不知道会有这样的文档，去教你<a href="https://davidwalsh.name/unicode-css-classes" target="_blank" rel="external">用特殊字符命名你的 css 类</a>：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.ಠ_ಠ &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#f00</span>;</div><div class="line">  <span class="attribute">background</span>: pink;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.❤ &#123;</div><div class="line">  <span class="attribute">background</span>: lightgreen;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid green;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但请不要这么使用。</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/unicode-css-classes.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<h1 id="CSS-Circles"><a href="#CSS-Circles" class="headerlink" title="CSS Circles"></a><a href="https://davidwalsh.name/css-circles" target="_blank" rel="external">CSS Circles</a></h1><p><a href="https://davidwalsh.name/css-circles" target="_blank" rel="external">CSS 中的圆形</a> 与 <a href="https://davidwalsh.name/css-triangles" target="_blank" rel="external">CSS 中的三角形</a>一样。通过使用 <code>border-radius</code> 就能创建一个完美的圆形！</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.circle</span> &#123;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">  <span class="comment">/* width and height can be anything, as long as they're equal */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你也可以给圆形添加一些渐变效果，甚至可以添加动画。CSS 拥有更多<a href="http://alistapart.com/article/css-shapes-101" target="_blank" rel="external">对于图形统一的 API</a>，当然现在你可以使用 hack 创建一个圆形。</p>
+<ul>
+<li><a href="https://davidwalsh.name/demo/css-circles.php" target="_blank" rel="external">Demo</a></li>
+</ul>
+<p>就是这些：你可能不知道的 7 个关于 CSS 的事，一部分是临界的情况，其他一部分还是非常实用的。那么就大胆地去用它们吧！</p>
+<p><a href="https://davidwalsh.name/css-facts" target="_blank" rel="external"><strong>原文链接</strong></a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-06-15T09:41:11.796Z" itemprop="dateUpdated">2017-06-15 17:41:11</time>
+</span><br>
+
+
+        
+        <br><b style="color:#f66">版权声明</b> - Wangwei，转载请表明出处：<br><a href="/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/" target="_blank" rel="external">http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/</a>
+        
+    </div>
+    <footer>
+        <a href="http://hellowangwei.cn/blog">
+            <img src="/blog/img/avatar.jpg" alt="Wang Wei">
+            Wang Wei
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/features/">features</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/front-end/">front-end</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/译文/">译文</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/&title=《CSS 的使用中你可能不知道的 7 件事》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/&title=《CSS 的使用中你可能不知道的 7 件事》 — WangWei'blog&source=无论你信不信，JavaScript 和 CSS 已经开始重叠，并为 CSS 增加了更多的功能。当我在写 CSS 与 JavaScript 交互中你可能不知..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CSS 的使用中你可能不知道的 7 件事》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/blog/2017/06/15/NPM一些常用命令/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">NPM一些常用命令</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2017/06/15/生成SSH-keys/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">生成SSH keys</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/index.html',
+        sourceId: 'CSS-的使用中你可能不知道的-7-件事',
+        productKey: '00c942fa607846efad6e1357838ea8df',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/blog/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Wang Wei &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/&title=《CSS 的使用中你可能不知道的 7 件事》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/&title=《CSS 的使用中你可能不知道的 7 件事》 — WangWei'blog&source=无论你信不信，JavaScript 和 CSS 已经开始重叠，并为 CSS 增加了更多的功能。当我在写 CSS 与 JavaScript 交互中你可能不知..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CSS 的使用中你可能不知道的 7 件事》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADIUlEQVR42u3awW7jMAwE0P7/T2eBnvaSeIZ0gVp9OhVpYOupwM6S1NdXvF7f6/+fP693T3j3nM/vTZ789RMLGxsb+yHsBJC8ModtAJ/3VvwxsLGxsY9jJ6RZLCX4JMbaI7h4AjY2NvafZM8O6N0neVh+jiJsbGxs7A0mbzC1wZa3irCxsbGxZ5tujybfbr6T/LfY2NjYZ7M3IfHbfv7x+TY2Njb2L2O/RiuJnKT8yEcCr1sXNjY29knsWRMnpybH1F7cyZ95IcLGxsY+gt22hIp4GA0AktbVDUePjY2NfRw7b/1vxrRJEZJEVx63FwGGjY2NfRB70yTK/2/fljd5g6m+eISNjY19ELv9p78dr7atpfz48pjExsbGPpu93/oG0Dak2vi8GPFiY2NjH8G+KxjaJtRsPNy2kC4+wcbGxj6CnYTEHjC7vtMWMEWIYmNjYx/E3pQHm2hpW1dtOVT3z7CxsbEfy84HpXmzZtYw2hcY+XUfbGxs7FPZbau93Xq+reT5+Xfqs8TGxsZ+IDtZswhpQ7E97tm1HmxsbOyT2HkJMYuf/NLPLFD3DSxsbGzsp7NXI9JRydHGzGwwcBGx2NjY2Aex2wbNXRGyD7nZpSJsbGzs89j7UetmlJtsdDbcjXIbGxsb+2h2G2azIqG99JNTL96CjY2NfRC73dxdjae2/JgNgG8Y8WJjY2M/hN0y8ihqi5k26tq3v40xbGxs7Iez79rE5iCSsMxDNCmTsLGxsc9g519NNpF/My8YZrF68S5sbGzsg9h3tfWTJ7QD3VmMFdeMsLGxsQ9it6+ctftb/Ow4builYWNjYz+WvY+QzRB31tKKembJZVBsbGzsI9j1VKH8fD9Ijv5u++jCxsbGfhT7Va6kkNgc6IZUXOvBxsbGPoidrzZ+Zs+cHXHbxsLGxsY+j52HVtsGSjaUFCF5cVIUVNjY2NjHsfPQaq/41Ndo4hHCbNiAjY2NjZ2w23C696CjMTA2Njb2n2RvSoi8VJgF5OqyDjY2NvYR7BsiITis13pt3oWNjY19KnszlN1ESFuWzAYPKzw2Njb2b2f/A7H8HF81ENaMAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'hellowangwei';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'hellowangwei';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
