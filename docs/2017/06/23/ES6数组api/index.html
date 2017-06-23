@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>ES6数组api | WangWei&#39;blog | 越努力•越幸运</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JS,ES6">
+    <meta name="description" content="前言看到一篇文章 【第948期】你不懂JS：ES6与未来 新增API  觉得很不错,记录一下,摘抄其中一部分,加上一些自己的心得。 es6 Array新增的api正文从这开始~ Array.of(..) 静态函数Array.of(..)作为数组首选的函数型构造器取代了Array(..)，因为Array.of(..)没有那种单数字参数值的情况。考虑如下代码： 1234567891011var a =">
+<meta name="keywords" content="JS,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6数组api">
+<meta property="og:url" content="http://hellowangwei.cn/blog/2017/06/23/ES6数组api/index.html">
+<meta property="og:site_name" content="WangWei&#39;blog">
+<meta property="og:description" content="前言看到一篇文章 【第948期】你不懂JS：ES6与未来 新增API  觉得很不错,记录一下,摘抄其中一部分,加上一些自己的心得。 es6 Array新增的api正文从这开始~ Array.of(..) 静态函数Array.of(..)作为数组首选的函数型构造器取代了Array(..)，因为Array.of(..)没有那种单数字参数值的情况。考虑如下代码： 1234567891011var a =">
+<meta property="og:updated_time" content="2017-06-23T16:30:50.583Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6数组api">
+<meta name="twitter:description" content="前言看到一篇文章 【第948期】你不懂JS：ES6与未来 新增API  觉得很不错,记录一下,摘抄其中一部分,加上一些自己的心得。 es6 Array新增的api正文从这开始~ Array.of(..) 静态函数Array.of(..)作为数组首选的函数型构造器取代了Array(..)，因为Array.of(..)没有那种单数字参数值的情况。考虑如下代码： 1234567891011var a =">
+    
+        <link rel="alternate" type="application/atom+xml" title="WangWei&#39;blog" href="/blog/atom.xml">
+    
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/brand.jpg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Wang Wei</h5>
+          <a href="mailto:380902396@qq.com" title="380902396@qq.com" class="mail">380902396@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://hellowangwei.cn"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hellowangwei" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3911516398" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ES6数组api</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ES6数组api</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-23T08:51:16.000Z" itemprop="datePublished" class="page-time">
+  2017-06-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/笔记随笔/">笔记随笔</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Array-of-静态函数"><span class="post-toc-number">2.</span> <span class="post-toc-text">Array.of(..) 静态函数</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Array-from-静态函数"><span class="post-toc-number">3.</span> <span class="post-toc-text">Array.from(..) 静态函数</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#copyWithin-原型方法"><span class="post-toc-number">4.</span> <span class="post-toc-text">copyWithin(..) 原型方法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#fill-原型方法"><span class="post-toc-number">5.</span> <span class="post-toc-text">fill(..) 原型方法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#find-findIndex-原型方法"><span class="post-toc-number">6.</span> <span class="post-toc-text">find(..), findIndex(..) 原型方法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#entries-values-keys-原型方法"><span class="post-toc-number">7.</span> <span class="post-toc-text">entries(), values(), keys() 原型方法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#最后"><span class="post-toc-number">8.</span> <span class="post-toc-text">最后</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-ES6数组api"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ES6数组api</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-23 16:51:16" datetime="2017-06-23T08:51:16.000Z"  itemprop="datePublished">2017-06-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/笔记随笔/">笔记随笔</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>看到一篇文章<a href="http://mp.weixin.qq.com/s/DtpwgxxVs5XcD7AYRIcpEg" title="【第948期】你不懂JS：ES6与未来 新增API" target="_blank" rel="external"> 【第948期】你不懂JS：ES6与未来 新增API </a> 觉得很不错,记录一下,摘抄其中一部分,加上一些自己的心得。</p>
+<p>es6 Array新增的api<br>正文从这开始~</p>
+<h1 id="Array-of-静态函数"><a href="#Array-of-静态函数" class="headerlink" title="Array.of(..) 静态函数"></a><strong>Array.of(..) 静态函数</strong></h1><p>Array.of(..)作为数组首选的函数型构造器取代了Array(..)，因为Array.of(..)没有那种单数字参数值的情况。考虑如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var a = Array( 3 );</div><div class="line">a.length;                        // 3</div><div class="line">a[0];                            // undefined</div><div class="line"></div><div class="line">var b = Array.of( 3 );</div><div class="line">b.length;                        // 1</div><div class="line">b[0];                            // 3</div><div class="line"></div><div class="line">var c = Array.of( 1, 2, 3 );</div><div class="line">c.length;                        // 3</div><div class="line">c;</div></pre></td></tr></table></figure>
+<h1 id="Array-from-静态函数"><a href="#Array-from-静态函数" class="headerlink" title="Array.from(..) 静态函数"></a><strong>Array.from(..) 静态函数</strong></h1><p>当需要将类数组对象转为数组,或将Set或Map对象转为数组时,或是复制一个数组时都可以用到这个api,相比过去的方法会优雅很多.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 类数组对象</div><div class="line">var arrLike = &#123;</div><div class="line">    length: 3,</div><div class="line">    0: &quot;foo&quot;,</div><div class="line">    1: &quot;bar&quot;</div><div class="line">&#125;;</div><div class="line">var arr = Array.prototype.slice.call(arrLike );</div><div class="line"></div><div class="line">//复制数组</div><div class="line">var arr = arr.slice();//或var arr = arr.concat();</div></pre></td></tr></table></figure>
+<p>在这两种情况下，新的ES6Array.from(..)方法是一种更易懂而且更优雅的方式 —— 也不那么冗长：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = Array.from( arrLike );</div><div class="line"></div><div class="line">var arrCopy = Array.from( arr );</div></pre></td></tr></table></figure>
+<p>Array.from(..)会查看第一个参数值是否是一个可迭代对象（参见第三章的“迭代器”），如果是，它就使用迭代器来产生值，并将这些值“拷贝”到将要被返回的数组中。因为真正的数组拥有一个可以产生这些值的迭代器，所以这个迭代器会被自动地使用。</p>
+<p>就是说可迭代对象都可以转成数组,如Set,map,String等.<br>Array.from(..)配合Set的数组去重技巧<code>arr = Array.from(new Set(arr))</code></p>
+<p><strong>Array.from(..) 映射</strong></p>
+<p>Array.from(..)工具还有另外一个绝技。第二个参数值，如果被提供的话，是一个映射函数（和普通的Array#map(..)几乎相同），它在将每个源值映射/变形为返回的目标值时调用。考虑如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var arrLike = &#123;</div><div class="line">    length: 4,</div><div class="line">    2: &quot;foo&quot;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Array.from( arrLike, function mapper(val,idx)&#123;</div><div class="line">    if (typeof val == &quot;string&quot;) &#123;</div><div class="line">        return val.toUpperCase();</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        return idx;</div><div class="line">    &#125;</div><div class="line">&#125; );</div><div class="line">// [ 0, 1, &quot;FOO&quot;, 3 ]</div></pre></td></tr></table></figure>
+<h1 id="copyWithin-原型方法"><a href="#copyWithin-原型方法" class="headerlink" title="copyWithin(..) 原型方法"></a><strong>copyWithin(..) 原型方法</strong></h1><p>Array#copyWithin(..)是一个对所有数组可用的新修改器方法（包括类型化数组；参加第五章）。copyWithin(..)将数组的一部分拷贝到同一个数组的其他位置，覆盖之前存在在那里的任何东西。</p>
+<p>它的参数值是 目标（要被拷贝到的索引位置），开始（拷贝开始的索引位置（含）），和可选的 结束（拷贝结束的索引位置（不含））。如果这些参数值中存在任何负数，那么它们就被认为是相对于数组的末尾。</p>
+<p>考虑如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[1,2,3,4,5].copyWithin( 3, 0 );            // [1,2,3,1,2]</div><div class="line"></div><div class="line">[1,2,3,4,5].copyWithin( 3, 0, 1 );        // [1,2,3,1,5]</div><div class="line"></div><div class="line">[1,2,3,4,5].copyWithin( 0, -2 );        // [4,5,3,4,5]</div><div class="line"></div><div class="line">[1,2,3,4,5].copyWithin( 0, -2, -1 );    // [4,2,3,4,5]</div></pre></td></tr></table></figure>
+<p>copyWithin(..)方法不会扩张数组的长度，就像前面代码段中的第一个例子展示的。当到达数组的末尾时拷贝就会停止。</p>
+<h1 id="fill-原型方法"><a href="#fill-原型方法" class="headerlink" title="fill(..) 原型方法"></a><strong>fill(..) 原型方法</strong></h1><p>ES6中的Array#fill(..)方法原生地支持使用一个指定的值来完全地（或部分地）填充一个既存的数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = Array( 4 ).fill( undefined );</div><div class="line">a;</div><div class="line">// [undefined,undefined,undefined,undefined]</div></pre></td></tr></table></figure>
+<p>fill(..)可选地接收 开始 与 结束 参数，它们指示要被填充的数组的一部分，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = [ null, null, null, null ].fill( 42, 1, 3 );</div><div class="line"></div><div class="line">a;                                    // [null,42,42,null]</div></pre></td></tr></table></figure>
+<h1 id="find-findIndex-原型方法"><a href="#find-findIndex-原型方法" class="headerlink" title="find(..), findIndex(..) 原型方法"></a><strong>find(..), findIndex(..) 原型方法</strong></h1><p>一般来说，在一个数组中搜索一个值的最常见方法曾经是indexOf(..)方法，如果值被找到的话它返回值的位置索引，没有找到的话返回 -1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line"></div><div class="line">(a.indexOf( 3 ) != -1);                // true</div><div class="line">(a.indexOf( 7 ) != -1);                // false</div><div class="line"></div><div class="line">(a.indexOf( &quot;2&quot; ) != -1);            // false</div></pre></td></tr></table></figure>
+<p>indexOf(..)比较要求一个严格===匹配，所以搜索”2”找不到值2，反之亦然。没有办法覆盖indexOf(..)的匹配算法。不得不手动与值-1进行比较也很不幸/不优雅。</p>
+<p>从ES5开始，控制匹配逻辑的最常见的迂回方法是some(..)。它的工作方式是为每一个元素调用一个回调函数，直到这些调用中的一个返回true/truthy值，然后它就会停止。因为是由你来定义这个回调函数，所以你就拥有了如何做出匹配的完全控制权：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line"></div><div class="line">a.some( function matcher(v)&#123;</div><div class="line">    return v == &quot;2&quot;;</div><div class="line">&#125; );                                // true</div><div class="line"></div><div class="line">a.some( function matcher(v)&#123;</div><div class="line">    return v == 7;</div><div class="line">&#125; );                                // false</div></pre></td></tr></table></figure>
+<p>但这种方式的缺陷是你只能使用true/false来指示是否找到了合适的匹配值，而不是实际被匹配的值。</p>
+<p>ES6的find(..)解决了这个问题。它的工作方式基本上与some(..)相同，除了一旦回调返回一个true/truthy值，实际的数组值就会被返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line"></div><div class="line">a.find( function matcher(v)&#123;</div><div class="line">    return v == &quot;2&quot;;</div><div class="line">&#125; );                                // 2</div><div class="line"></div><div class="line">a.find( function matcher(v)&#123;</div><div class="line">    return v == 7;                    // undefined</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>ES6的findIndex(..)与find(..)相同，只不过返回值是index</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line"></div><div class="line">a.find( function matcher(v)&#123;</div><div class="line">    return v == &quot;2&quot;;</div><div class="line">&#125; );                                // 1</div><div class="line"></div><div class="line">a.find( function matcher(v)&#123;</div><div class="line">    return v == 7;                    // -1</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>some(),find(),findIndex()三个api在使用上是相同的,在需要判断数组中有没有符合条件的项用some,需要用符合条件的匹配值时用find(),需要index时用findIndex();</p>
+<p>不要使用findIndex(..) != -1（在indexOf(..)中经常这么干）来从检索中取得一个boolean，因为some(..)已经给出了你想要的true/false了。而且也不要用a[ a.findIndex(..) ]来取得一个匹配的值，因为这是find(..)完成的任务。</p>
+<h1 id="entries-values-keys-原型方法"><a href="#entries-values-keys-原型方法" class="headerlink" title="entries(), values(), keys() 原型方法"></a><strong>entries(), values(), keys() 原型方法</strong></h1><p>在第三章中，我们展示了数据结构如何通过一个迭代器来提供一种模拟逐个值的迭代。然后我们在第五章探索新的ES6集合（Map，Set，等）如何为了产生不同种类的迭代器而提供几种方法时阐述了这种方式。</p>
+<p>因为Array并不是ES6的新东西，所以它可能不被认为是一个传统意义上的“集合”，但是在它提供了相同的迭代器方法：entries()，values()，和keys()的意义上，它是的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3];</div><div class="line"></div><div class="line">[...a.values()];                    // [1,2,3]</div><div class="line">[...a.keys()];                        // [0,1,2]</div><div class="line">[...a.entries()];                    // [ [0,1], [1,2], [2,3] ]</div><div class="line"></div><div class="line">[...a[Symbol.iterator]()];            // [1,2,3]</div></pre></td></tr></table></figure>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p><a href="http://hellowangwei.github.io/blog" target="_blank" rel="external">我的博客</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-06-23T16:30:50.583Z" itemprop="dateUpdated">2017-06-24 00:30:50</time>
+</span><br>
+
+
+        
+        <br><b style="color:#f66">版权声明</b> - Wangwei，转载请表明出处：<br><a href="/blog/2017/06/23/ES6数组api/" target="_blank" rel="external">http://hellowangwei.cn/blog/2017/06/23/ES6数组api/</a>
+        
+    </div>
+    <footer>
+        <a href="http://hellowangwei.cn/blog">
+            <img src="/blog/img/avatar.jpg" alt="Wang Wei">
+            Wang Wei
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/JS/">JS</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/06/23/ES6数组api/&title=《ES6数组api》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/06/23/ES6数组api/&title=《ES6数组api》 — WangWei'blog&source=Web 前端，Nodejs 后端开发，Javascript 全栈式开发" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/06/23/ES6数组api/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6数组api》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/06/23/ES6数组api/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/06/23/ES6数组api/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2017/06/15/使用hexo-indego搭建静态博客/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用hexo+indego搭建静态博客</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://hellowangwei.cn/blog/2017/06/23/ES6数组api/index.html',
+        sourceId: 'ES6数组api',
+        productKey: '00c942fa607846efad6e1357838ea8df',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/blog/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Wang Wei &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/06/23/ES6数组api/&title=《ES6数组api》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/06/23/ES6数组api/&title=《ES6数组api》 — WangWei'blog&source=Web 前端，Nodejs 后端开发，Javascript 全栈式开发" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/06/23/ES6数组api/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6数组api》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/06/23/ES6数组api/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/06/23/ES6数组api/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aS47CMBBFUfa/6bTEqCUU576yQXL5eoRQEnwyKOrj1wuv673IN/+/H19zd/3nXcuWDBkytmVcw3V3DX/OJ+kCi+9NhgwZ5zDGQba2xfSb8eeHPcuQIUMGTvh4+kjukiFDhowagySLpByVIUOGjJTBkz/O4IkmSSKX1eIyZMjYkJEOBn75+YvzDRkyZGzCuMJFfj5I5sJC93ZXMmTIaM0giRoPwcXiMzxmEWS4MmTIaMHgR7tmwvHMKBTtU4YMGa0ZPIDOh91a4yw+oCZDhox2DB5AeWiujTBJyrhgsiFDhowNGauKTH4XH23WRqcyZMjox0gLzpmEb/5F3O5WhgwZrRm1QWPaCJt5BfxpMmTI6MoYJ2ppKKyVvrVDG2i+IUOGjEYM1MCaLll5apgWvTJkyOjNSG+rJX88oAcTVxkyZBzD4NODtH1Wq6R5sy843SZDhowDGLWgmS5eJD+caJMhQ0Y7Ri3Mfe/Kh6nFONDLkCHjMEb60NrAIH0Fi2txGTJkbMJYGzQ5iR+zQEdAZMiQcQxjqoAMU7qZBDE4bCFDhowWDN7EXzsSSF8BH2rKkCGjH2O+fb92MFm7RoYMGb0Zvzm0SlJAXr7ylytDhoxODN78So9fpKVp+lsyZMg4jZEmfGtbafwf4KEKlyFDxvGMWqON98QWpIYyZMiQseogF26rkXtlyJBxDoMXsbzptupFoNAvQ4aM1oy0dJwfEsy322KADBkydmX8AacGUff+bqXkAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'hellowangwei';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'hellowangwei';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
