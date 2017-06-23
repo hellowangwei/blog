@@ -7,48 +7,8 @@
     </url>
 
     <url>
-        <loc>http://hellowangwei.cn/blog/2017/06/15/%E4%BD%BF%E7%94%A8hexo-indego%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</loc>
-        <lastmod>2017-06-16T07:39:38.311Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://hellowangwei.cn/blog/2017/06/15/%E4%BD%BF%E7%94%A8-Git-%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE-reset-%E4%B8%8E-rebase/</loc>
-        <lastmod>2017-06-16T06:49:06.646Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://hellowangwei.cn/blog/2017/06/15/%E5%AF%B9%E4%BA%8E-Web-%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%92%8C%E5%BC%80%E5%8F%91%E8%80%85%E9%9D%9E%E5%B8%B8%E6%9C%89%E7%94%A8%E7%9A%84-25-%E4%B8%AA-Chrome-%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/</loc>
-        <lastmod>2017-06-16T05:50:10.278Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://hellowangwei.cn/blog/2017/06/15/CSS-%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%AD%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84-7-%E4%BB%B6%E4%BA%8B/</loc>
-        <lastmod>2017-06-15T09:41:11.796Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://hellowangwei.cn/blog/2017/06/15/20-%E4%B8%AA%E4%BA%A4%E4%BA%92%E9%9D%9E%E5%B8%B8%E6%A3%92%E7%9A%84%E6%8C%89%E9%92%AE%E4%BB%A3%E7%A0%81/</loc>
-        <lastmod>2017-06-15T09:41:11.767Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://hellowangwei.cn/blog/2017/06/15/NPM%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
-        <lastmod>2017-06-15T09:41:11.754Z</lastmod>
+        <lastmod>2017-06-23T11:19:46.914Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -56,7 +16,55 @@
 
     <url>
         <loc>http://hellowangwei.cn/blog/2017/06/15/%E7%94%9F%E6%88%90SSH-keys/</loc>
-        <lastmod>2017-06-15T09:33:24.772Z</lastmod>
+        <lastmod>2017-06-23T11:19:46.914Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://hellowangwei.cn/blog/2017/06/15/%E4%BD%BF%E7%94%A8-Git-%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE-reset-%E4%B8%8E-rebase/</loc>
+        <lastmod>2017-06-23T11:19:46.910Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://hellowangwei.cn/blog/2017/06/15/NPM%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+        <lastmod>2017-06-23T11:19:46.909Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://hellowangwei.cn/blog/2017/06/15/CSS-%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%AD%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84-7-%E4%BB%B6%E4%BA%8B/</loc>
+        <lastmod>2017-06-23T11:19:46.908Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://hellowangwei.cn/blog/2017/06/15/%E4%BD%BF%E7%94%A8hexo-indego%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</loc>
+        <lastmod>2017-06-23T11:19:46.905Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://hellowangwei.cn/blog/2017/06/15/20-%E4%B8%AA%E4%BA%A4%E4%BA%92%E9%9D%9E%E5%B8%B8%E6%A3%92%E7%9A%84%E6%8C%89%E9%92%AE%E4%BB%A3%E7%A0%81/</loc>
+        <lastmod>2017-06-23T11:19:46.903Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://hellowangwei.cn/blog/2017/06/23/ES6%E6%95%B0%E7%BB%84api/</loc>
+        <lastmod>2017-06-23T11:15:21.196Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

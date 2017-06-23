@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://hellowangwei.cn/blog/"/>
-  <updated>2017-06-16T07:39:38.311Z</updated>
+  <updated>2017-06-23T11:15:21.196Z</updated>
   <id>http://hellowangwei.cn/blog/</id>
   
   <author>
@@ -16,11 +16,73 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ES6数组api</title>
+    <link href="http://hellowangwei.cn/blog/2017/06/23/ES6%E6%95%B0%E7%BB%84api/"/>
+    <id>http://hellowangwei.cn/blog/2017/06/23/ES6数组api/</id>
+    <published>2017-06-23T08:51:16.000Z</published>
+    <updated>2017-06-23T11:15:21.196Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>看到一篇文章<a href="http://mp.weixin.qq.com/s/DtpwgxxVs5XcD7AYRIcpEg" title="【第948期】你不懂JS：ES6与未来 新增API" target="_blank" rel="external"> 【第948期】你不懂JS：ES6与未来 新增API </a> 觉得很不错,记录一下,摘抄其中一部分,加上一些自己的心得。</p>
+<p>es6 Array新增的api<br>正文从这开始~</p>
+<h1 id="Array-of-静态函数"><a href="#Array-of-静态函数" class="headerlink" title="Array.of(..) 静态函数"></a><strong>Array.of(..) 静态函数</strong></h1><p>Array.of(..)作为数组首选的函数型构造器取代了Array(..)，因为Array.of(..)没有那种单数字参数值的情况。考虑如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var a = Array( 3 );</div><div class="line">a.length;                        // 3</div><div class="line">a[0];                            // undefined</div><div class="line"></div><div class="line">var b = Array.of( 3 );</div><div class="line">b.length;                        // 1</div><div class="line">b[0];                            // 3</div><div class="line"></div><div class="line">var c = Array.of( 1, 2, 3 );</div><div class="line">c.length;                        // 3</div><div class="line">c;</div></pre></td></tr></table></figure>
+<h1 id="Array-from-静态函数"><a href="#Array-from-静态函数" class="headerlink" title="Array.from(..) 静态函数"></a><strong>Array.from(..) 静态函数</strong></h1><p>当需要将类数组对象转为数组,或将Set或Map对象转为数组时,或是复制一个数组时都可以用到这个api,相比过去的方法会优雅很多.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 类数组对象</div><div class="line">var arrLike = &#123;</div><div class="line">    length: 3,</div><div class="line">    0: &quot;foo&quot;,</div><div class="line">    1: &quot;bar&quot;</div><div class="line">&#125;;</div><div class="line">var arr = Array.prototype.slice.call(arrLike );</div><div class="line"></div><div class="line">//复制数组</div><div class="line">var arr = arr.slice();//或var arr = arr.concat();</div></pre></td></tr></table></figure>
+<p>在这两种情况下，新的ES6Array.from(..)方法是一种更易懂而且更优雅的方式 —— 也不那么冗长：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = Array.from( arrLike );</div><div class="line"></div><div class="line">var arrCopy = Array.from( arr );</div></pre></td></tr></table></figure>
+<p>Array.from(..)会查看第一个参数值是否是一个可迭代对象（参见第三章的“迭代器”），如果是，它就使用迭代器来产生值，并将这些值“拷贝”到将要被返回的数组中。因为真正的数组拥有一个可以产生这些值的迭代器，所以这个迭代器会被自动地使用。</p>
+<p>就是说可迭代对象都可以转成数组,如Set,map,String等.<br>Array.from(..)配合Set的数组去重技巧<code>arr = Array.from(new Set(arr))</code></p>
+<p><strong>Array.from(..) 映射</strong></p>
+<p>Array.from(..)工具还有另外一个绝技。第二个参数值，如果被提供的话，是一个映射函数（和普通的Array#map(..)几乎相同），它在将每个源值映射/变形为返回的目标值时调用。考虑如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var arrLike = &#123;</div><div class="line">    length: 4,</div><div class="line">    2: &quot;foo&quot;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Array.from( arrLike, function mapper(val,idx)&#123;</div><div class="line">    if (typeof val == &quot;string&quot;) &#123;</div><div class="line">        return val.toUpperCase();</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        return idx;</div><div class="line">    &#125;</div><div class="line">&#125; );</div><div class="line">// [ 0, 1, &quot;FOO&quot;, 3 ]</div></pre></td></tr></table></figure>
+<h1 id="copyWithin-原型方法"><a href="#copyWithin-原型方法" class="headerlink" title="copyWithin(..) 原型方法"></a><strong>copyWithin(..) 原型方法</strong></h1><p>Array#copyWithin(..)是一个对所有数组可用的新修改器方法（包括类型化数组；参加第五章）。copyWithin(..)将数组的一部分拷贝到同一个数组的其他位置，覆盖之前存在在那里的任何东西。</p>
+<p>它的参数值是 目标（要被拷贝到的索引位置），开始（拷贝开始的索引位置（含）），和可选的 结束（拷贝结束的索引位置（不含））。如果这些参数值中存在任何负数，那么它们就被认为是相对于数组的末尾。</p>
+<p>考虑如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[1,2,3,4,5].copyWithin( 3, 0 );            // [1,2,3,1,2]</div><div class="line"></div><div class="line">[1,2,3,4,5].copyWithin( 3, 0, 1 );        // [1,2,3,1,5]</div><div class="line"></div><div class="line">[1,2,3,4,5].copyWithin( 0, -2 );        // [4,5,3,4,5]</div><div class="line"></div><div class="line">[1,2,3,4,5].copyWithin( 0, -2, -1 );    // [4,2,3,4,5]</div></pre></td></tr></table></figure>
+<p>copyWithin(..)方法不会扩张数组的长度，就像前面代码段中的第一个例子展示的。当到达数组的末尾时拷贝就会停止。</p>
+<h1 id="fill-原型方法"><a href="#fill-原型方法" class="headerlink" title="fill(..) 原型方法"></a><strong>fill(..) 原型方法</strong></h1><p>ES6中的Array#fill(..)方法原生地支持使用一个指定的值来完全地（或部分地）填充一个既存的数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = Array( 4 ).fill( undefined );</div><div class="line">a;</div><div class="line">// [undefined,undefined,undefined,undefined]</div></pre></td></tr></table></figure>
+<p>fill(..)可选地接收 开始 与 结束 参数，它们指示要被填充的数组的一部分，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = [ null, null, null, null ].fill( 42, 1, 3 );</div><div class="line"></div><div class="line">a;                                    // [null,42,42,null]</div></pre></td></tr></table></figure>
+<h1 id="find-findIndex-原型方法"><a href="#find-findIndex-原型方法" class="headerlink" title="find(..), findIndex(..) 原型方法"></a><strong>find(..), findIndex(..) 原型方法</strong></h1><p>一般来说，在一个数组中搜索一个值的最常见方法曾经是indexOf(..)方法，如果值被找到的话它返回值的位置索引，没有找到的话返回 -1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line"></div><div class="line">(a.indexOf( 3 ) != -1);                // true</div><div class="line">(a.indexOf( 7 ) != -1);                // false</div><div class="line"></div><div class="line">(a.indexOf( &quot;2&quot; ) != -1);            // false</div></pre></td></tr></table></figure>
+<p>indexOf(..)比较要求一个严格===匹配，所以搜索”2”找不到值2，反之亦然。没有办法覆盖indexOf(..)的匹配算法。不得不手动与值-1进行比较也很不幸/不优雅。</p>
+<p>从ES5开始，控制匹配逻辑的最常见的迂回方法是some(..)。它的工作方式是为每一个元素调用一个回调函数，直到这些调用中的一个返回true/truthy值，然后它就会停止。因为是由你来定义这个回调函数，所以你就拥有了如何做出匹配的完全控制权：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line"></div><div class="line">a.some( function matcher(v)&#123;</div><div class="line">    return v == &quot;2&quot;;</div><div class="line">&#125; );                                // true</div><div class="line"></div><div class="line">a.some( function matcher(v)&#123;</div><div class="line">    return v == 7;</div><div class="line">&#125; );                                // false</div></pre></td></tr></table></figure>
+<p>但这种方式的缺陷是你只能使用true/false来指示是否找到了合适的匹配值，而不是实际被匹配的值。</p>
+<p>ES6的find(..)解决了这个问题。它的工作方式基本上与some(..)相同，除了一旦回调返回一个true/truthy值，实际的数组值就会被返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line"></div><div class="line">a.find( function matcher(v)&#123;</div><div class="line">    return v == &quot;2&quot;;</div><div class="line">&#125; );                                // 2</div><div class="line"></div><div class="line">a.find( function matcher(v)&#123;</div><div class="line">    return v == 7;                    // undefined</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>ES6的findIndex(..)与find(..)相同，只不过返回值是index</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line"></div><div class="line">a.find( function matcher(v)&#123;</div><div class="line">    return v == &quot;2&quot;;</div><div class="line">&#125; );                                // 1</div><div class="line"></div><div class="line">a.find( function matcher(v)&#123;</div><div class="line">    return v == 7;                    // -1</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>some(),find(),findIndex()三个api在使用上是相同的,在需要判断数组中有没有符合条件的项用some,需要用符合条件的匹配值时用find(),需要index时用findIndex();</p>
+<p>不要使用findIndex(..) != -1（在indexOf(..)中经常这么干）来从检索中取得一个boolean，因为some(..)已经给出了你想要的true/false了。而且也不要用a[ a.findIndex(..) ]来取得一个匹配的值，因为这是find(..)完成的任务。</p>
+<h1 id="entries-values-keys-原型方法"><a href="#entries-values-keys-原型方法" class="headerlink" title="entries(), values(), keys() 原型方法"></a><strong>entries(), values(), keys() 原型方法</strong></h1><p>在第三章中，我们展示了数据结构如何通过一个迭代器来提供一种模拟逐个值的迭代。然后我们在第五章探索新的ES6集合（Map，Set，等）如何为了产生不同种类的迭代器而提供几种方法时阐述了这种方式。</p>
+<p>因为Array并不是ES6的新东西，所以它可能不被认为是一个传统意义上的“集合”，但是在它提供了相同的迭代器方法：entries()，values()，和keys()的意义上，它是的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3];</div><div class="line"></div><div class="line">[...a.values()];                    // [1,2,3]</div><div class="line">[...a.keys()];                        // [0,1,2]</div><div class="line">[...a.entries()];                    // [ [0,1], [1,2], [2,3] ]</div><div class="line"></div><div class="line">[...a[Symbol.iterator]()];            // [1,2,3]</div></pre></td></tr></table></figure>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p><a href="http://hellowangwei.github.io/blog" target="_blank" rel="external">我的博客</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;看到一篇文章&lt;a href=&quot;http://mp.weixin.qq.com/s/DtpwgxxVs5XcD7AYRIcpEg&quot; title
+    
+    </summary>
+    
+      <category term="笔记随笔" scheme="http://hellowangwei.cn/blog/categories/%E7%AC%94%E8%AE%B0%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="JS" scheme="http://hellowangwei.cn/blog/tags/JS/"/>
+    
+      <category term="ES6" scheme="http://hellowangwei.cn/blog/tags/ES6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用hexo+indego搭建静态博客</title>
     <link href="http://hellowangwei.cn/blog/2017/06/15/%E4%BD%BF%E7%94%A8hexo-indego%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
     <id>http://hellowangwei.cn/blog/2017/06/15/使用hexo-indego搭建静态博客/</id>
     <published>2017-06-15T09:55:33.000Z</published>
-    <updated>2017-06-16T07:39:38.311Z</updated>
+    <updated>2017-06-23T11:19:46.905Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://github.com/" target="_blank" rel="external">Github </a>为广大开发者提供了一个非常好的平台，不仅是代码的开源，同时<a href="https://github.com/" target="_blank" rel="external"> Github </a>还提供了开发者可以在<a href="https://github.com/" target="_blank" rel="external"> Github </a>上建立自己的站点（GithubPage）的一个非常有意思的功能。这个功能的局限是只能创建静态的网站，那么我们可以使用一些工具来快速创建这一网站。<br>本文旨在帮助刚接触<a href="https://github.com/" target="_blank" rel="external"> Github </a>新手，想利用<a href="https://github.com/" target="_blank" rel="external"> Github </a>来创建自己的站点、个人博客等。大神可以忽视<strong>(:з」∠)</strong>。</p>
 <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>你需要在<a href="https://github.com/" target="_blank" rel="external"> Github </a>上创建一个属于自己的账户，然后新建一个仓库（<code>new repository</code>），并命名为 <code>YourSiteName.github.io/com</code>，此时<a href="https://github.com/" target="_blank" rel="external"> Github </a>会帮助你初始化一个静态网页，你可以根据自己的喜好选择一些模版（<del>这都不是重点</del>），接着尝试访问下你所建的站点，成功后就可以开始动工了。</p>
@@ -65,7 +127,7 @@
 <p>修改 <code>hexo/source/tags/index.md</code> 的元数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">layout: tags</div><div class="line">comments: false</div><div class="line">---</div></pre></td></tr></table></figure></p>
 <h3 id="5-开启分类页"><a href="#5-开启分类页" class="headerlink" title="5. 开启分类页"></a>5. 开启分类页</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new page categories</div></pre></td></tr></table></figure>
 <p>修改 <code>hexo/source/categories/index.md</code> 的元数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">layout: categories</div><div class="line">comments: false</div><div class="line">---</div></pre></td></tr></table></figure></p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p><a href="http://hellowangwei.github.io/blog">我的博客</a></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p><a href="http://hellowangwei.github.io/blog" target="_blank" rel="external">我的博客</a></p>
 ]]></content>
     
     <summary type="html">
@@ -96,7 +158,7 @@
     <link href="http://hellowangwei.cn/blog/2017/06/15/%E4%BD%BF%E7%94%A8-Git-%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE-reset-%E4%B8%8E-rebase/"/>
     <id>http://hellowangwei.cn/blog/2017/06/15/使用-Git-管理项目-reset-与-rebase/</id>
     <published>2017-06-15T09:49:09.000Z</published>
-    <updated>2017-06-16T06:49:06.646Z</updated>
+    <updated>2017-06-23T11:19:46.910Z</updated>
     
     <content type="html"><![CDATA[<p>在日常管理项目的过程中，可能会遇到提交的 commit/merge 并不是想要的，或是操作失误提交了，那么此时我们需要把不想要的 commit/merge 取消掉，如果做到呢？Git 为我们提供了一个 <code>reset</code> command，很好地解决了这个问题。</p>
 <h1 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h1><h2 id="1-命令说明"><a href="#1-命令说明" class="headerlink" title="1. 命令说明"></a>1. 命令说明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reset [--hard|soft|mixed|merge|keep] [&lt;commit&gt;|&lt;HEAD&gt;]</div></pre></td></tr></table></figure>
@@ -164,7 +226,7 @@
     <link href="http://hellowangwei.cn/blog/2017/06/15/NPM%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     <id>http://hellowangwei.cn/blog/2017/06/15/NPM一些常用命令/</id>
     <published>2017-06-15T07:57:11.000Z</published>
-    <updated>2017-06-15T09:41:11.754Z</updated>
+    <updated>2017-06-23T11:19:46.909Z</updated>
     
     <content type="html"><![CDATA[<h1 id="关于NPM"><a href="#关于NPM" class="headerlink" title="关于NPM"></a>关于NPM</h1><p>NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。<br>就目前而言，NPM的官网<a href="https://www.npmjs.com/" target="_blank" rel="external">[1]</a>拥有18万的packages。国内的镜像是淘宝所提供的CNPM<a href="http://npm.taobao.org/" target="_blank" rel="external">[2]</a>，与NPM相同，它会每隔10分钟就同步一次。</p>
 <h1 id="一些常用命令"><a href="#一些常用命令" class="headerlink" title="一些常用命令"></a>一些常用命令</h1><ul>
@@ -242,7 +304,7 @@
     <link href="http://hellowangwei.cn/blog/2017/06/15/CSS-%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%AD%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84-7-%E4%BB%B6%E4%BA%8B/"/>
     <id>http://hellowangwei.cn/blog/2017/06/15/CSS-的使用中你可能不知道的-7-件事/</id>
     <published>2017-06-15T07:50:56.000Z</published>
-    <updated>2017-06-15T09:41:11.796Z</updated>
+    <updated>2017-06-23T11:19:46.908Z</updated>
     
     <content type="html"><![CDATA[<p>无论你信不信，JavaScript 和 CSS 已经开始重叠，并为 CSS 增加了更多的功能。当我在写 <a href="https://davidwalsh.name/ways-css-javascript-interact" target="_blank" rel="external">CSS 与 JavaScript 交互中你可能不知道的 5 种方式</a>的时候，读者对于 CSS 与 JavaScript 已经重叠的事感到很惊讶。那么今天，我会着重为你介绍 7 个可以通过 CSS 完成的任务 —— 不使用 JavaScript 或图像处理！</p>
 <h1 id="CSS-supports"><a href="#CSS-supports" class="headerlink" title="CSS @supports"></a><a href="https://davidwalsh.name/css-supports" target="_blank" rel="external">CSS @supports</a></h1><p>每个优秀的前端工程师都会在使用某个特性前测试一下，确保是否在浏览器中可以使用。而这类测试通常是由 JavaScript 完成的，当然，也有很多人用 Modernizr（拥有很多很好功能的测试工具）来测试特性。那么现在有一个 CSS 新的 API 可以让你去做特性测试：<a href="https://davidwalsh.name/css-supports" target="_blank" rel="external">@supports</a>，下面的例子将简单地教你如何使用：</p>
@@ -318,7 +380,7 @@
     <link href="http://hellowangwei.cn/blog/2017/06/15/%E7%94%9F%E6%88%90SSH-keys/"/>
     <id>http://hellowangwei.cn/blog/2017/06/15/生成SSH-keys/</id>
     <published>2017-06-15T07:04:33.000Z</published>
-    <updated>2017-06-15T09:33:24.772Z</updated>
+    <updated>2017-06-23T11:19:46.914Z</updated>
     
     <content type="html"><![CDATA[<p>首先确认自己的系统中是否已经拥有密钥。在默认情况下SSH的密钥存储在其<code>~/.ssh</code>目录下。可以使用以下命令进入目录并列出内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd ~/.ssh</div><div class="line">$ ls</div><div class="line"></div><div class="line">id_rsa  id_rsa.pub  known_hosts</div></pre></td></tr></table></figure></p>
 <p>其中<code>id_rsa</code>和<code>id_rsa.pub</code>就是存储密钥的文件，带有<code>.pub</code>后缀的是公钥，另外一个则是私钥。如果存在这些文件，则可以直接用<code>$ cat id_rsa.pub</code>来读取密钥内容。<br>如果找不到这样的文件（或者不存在<code>~/.ssh</code>目录），则可以通过<code>$ ssh-keygen</code>来创建它们。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C `you@email.com`</div><div class="line"></div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file in which to save the key (/home/schacon/.ssh/id_rsa):</div><div class="line">Created directory &apos;/home/schacon/.ssh&apos;.</div><div class="line">Enter passphrase (empty for no passphrase):</div><div class="line">Enter same passphrase again:</div><div class="line">Your identification has been saved in /home/schacon/.ssh/id_rsa.</div><div class="line">Your public key has been saved in /home/schacon/.ssh/id_rsa.pub.</div><div class="line">The key fingerprint is:</div><div class="line">d0:82:24:8e:d7:f1:bb:9b:33:53:96:93:49:da:9b:e3 you@email.com</div></pre></td></tr></table></figure></p>
@@ -351,7 +413,7 @@
     <link href="http://hellowangwei.cn/blog/2017/06/15/%E5%AF%B9%E4%BA%8E-Web-%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%92%8C%E5%BC%80%E5%8F%91%E8%80%85%E9%9D%9E%E5%B8%B8%E6%9C%89%E7%94%A8%E7%9A%84-25-%E4%B8%AA-Chrome-%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/"/>
     <id>http://hellowangwei.cn/blog/2017/06/15/对于-Web-设计师和开发者非常有用的-25-个-Chrome-扩展应用/</id>
     <published>2017-06-15T02:10:33.000Z</published>
-    <updated>2017-06-16T05:50:10.278Z</updated>
+    <updated>2017-06-23T11:19:46.914Z</updated>
     
     <content type="html"><![CDATA[<p>尽管 Chrome 的开发者工具给你足够多的实用工具来覆盖你的设计和开发需求，但也可以通过添加免费的扩展应用去进一步扩展浏览器的功能。根据你的需要，并选择完美的扩展，你可以轻松地创建一个个性化的开发环境，这会大大提高你的开发效率。</p>
 <p>要介绍的 25 个 Chrome 扩展应该我们为你选择分为以下几类：<a href="#前端扩展">前端扩展</a>，<a href="#在线编辑">在线编辑</a>，<a href="#验证器与性能相关">验证器与性能相关</a>，<a href="#测量扩展应用">测量扩展应用</a>，<a href="#颜色工具">颜色工具</a>，<a href="#字体测试工具">字体测试工具</a>和 <a href="#很有用的实用性扩展应用">很有用的实用性扩展应用</a>。</p>
@@ -427,7 +489,7 @@
     <link href="http://hellowangwei.cn/blog/2017/06/15/20-%E4%B8%AA%E4%BA%A4%E4%BA%92%E9%9D%9E%E5%B8%B8%E6%A3%92%E7%9A%84%E6%8C%89%E9%92%AE%E4%BB%A3%E7%A0%81/"/>
     <id>http://hellowangwei.cn/blog/2017/06/15/20-个交互非常棒的按钮代码/</id>
     <published>2017-06-15T01:57:22.000Z</published>
-    <updated>2017-06-15T09:41:11.767Z</updated>
+    <updated>2017-06-23T11:19:46.903Z</updated>
     
     <content type="html"><![CDATA[<p>你能想象网页中没有按钮吗？我打赌你不会。在网页中，拥有按钮并不奇怪，这些看似很小、主要以矩形表现（如导航栏，版权信息）的东西，其实是网页 UI 中基础之一。它们不仅使链接看起来更有分量、吸引人和鲜明，而且他们还能提高跳转率和用户体验，使之更方便和直观。这些 CTA （Call-to-action：行为召唤）能帮你获得更多的潜在客户和促进业务的扩展。</p>
 <figure class="image-bubble">
