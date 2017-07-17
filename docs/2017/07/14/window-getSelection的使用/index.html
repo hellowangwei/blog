@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>window.getSelection的使用 | WangWei&#39;blog | 好好生活•天天向上</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js,window">
+    <meta name="description" content="需求项目中做了一个笔记的功能,需求是选中一段内容后添加笔记,用户写完后将用户写的内容和选中的内容保存起来,在文章中用下滑线标记。在查看笔记时要看到之前的标记,但是不能改写数据库中原html的内容。效果是这样的：这里用到了浏览器选取文本信息,选用了window.getSelection这个api. window.getSelection概述返回一个  Selection 对象，表示用户选择的文本范围">
+<meta name="keywords" content="js,window">
+<meta property="og:type" content="article">
+<meta property="og:title" content="window.getSelection的使用">
+<meta property="og:url" content="http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/index.html">
+<meta property="og:site_name" content="WangWei&#39;blog">
+<meta property="og:description" content="需求项目中做了一个笔记的功能,需求是选中一段内容后添加笔记,用户写完后将用户写的内容和选中的内容保存起来,在文章中用下滑线标记。在查看笔记时要看到之前的标记,但是不能改写数据库中原html的内容。效果是这样的：这里用到了浏览器选取文本信息,选用了window.getSelection这个api. window.getSelection概述返回一个  Selection 对象，表示用户选择的文本范围">
+<meta property="og:updated_time" content="2017-07-14T10:46:19.947Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="window.getSelection的使用">
+<meta name="twitter:description" content="需求项目中做了一个笔记的功能,需求是选中一段内容后添加笔记,用户写完后将用户写的内容和选中的内容保存起来,在文章中用下滑线标记。在查看笔记时要看到之前的标记,但是不能改写数据库中原html的内容。效果是这样的：这里用到了浏览器选取文本信息,选用了window.getSelection这个api. window.getSelection概述返回一个  Selection 对象，表示用户选择的文本范围">
+    
+        <link rel="alternate" type="application/atom+xml" title="WangWei&#39;blog" href="/blog/atom.xml">
+    
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/brand.jpg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Wang Wei</h5>
+          <a href="mailto:380902396@qq.com" title="380902396@qq.com" class="mail">380902396@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://hellowangwei.cn"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hellowangwei" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3911516398" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">window.getSelection的使用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">window.getSelection的使用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-14T07:17:15.000Z" itemprop="datePublished" class="page-time">
+  2017-07-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/笔记随笔/">笔记随笔</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#需求"><span class="post-toc-number">1.</span> <span class="post-toc-text">需求</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#window-getSelection"><span class="post-toc-number">2.</span> <span class="post-toc-text">window.getSelection</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#最后"><span class="post-toc-number">3.</span> <span class="post-toc-text">最后</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-window-getSelection的使用"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">window.getSelection的使用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-14 15:17:15" datetime="2017-07-14T07:17:15.000Z"  itemprop="datePublished">2017-07-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/笔记随笔/">笔记随笔</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>项目中做了一个笔记的功能,需求是选中一段内容后添加笔记,用户写完后将用户写的内容和选中的内容保存起来,在文章中用下滑线标记。<br>在查看笔记时要看到之前的标记,但是不能改写数据库中原html的内容。<br>效果是这样的：<br><br><br>这里用到了浏览器选取文本信息,选用了window.getSelection这个api.</p>
+<h1 id="window-getSelection"><a href="#window-getSelection" class="headerlink" title="window.getSelection"></a>window.getSelection</h1><p><strong>概述</strong><br>返回一个  Selection 对象，表示用户选择的文本范围或插入符号的当前位置。<br><strong>语法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const selection = window.getSelection() ;</div></pre></td></tr></table></figure>
+<p>*selection 是一个 Selection 对象。在页面中用鼠标选中一段内容时, Selection中就会包含所选中部分的信息,包括当前选中的文字内容,<br>父节点,子节点信息,选中部分的开始点,结束点分别属于的节点,以及在其父节点中的位置等.<br>详细的内容参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getSelection" title="window.getSelection" target="_blank" rel="external"> window.getSelection </a></p>
+<p>#解决方案</p>
+<p>##第一步是获得做笔记的原文片段<br>用selection.的tostring方法获得选中的文字内容,是作为存储笔记的原文章片段,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let str = window.getSelection().toString();//获得带有换行符的选中文本</div></pre></td></tr></table></figure></p>
+<p>##第二步是标记该片段在文章中的位置<br>首先想到页面加载完成后<br>获得保存的window.getSelection().toString()得到的片段,在文章中用正则匹配找到该片段<br>并在该片段前后加上标签做上标记.<br>但是发现如果取的片段过短,如只是个词时就会在文章中找到多处,也就不对了.<br>所以这个方案不行,在数据保存时就只能保存该片段的坐标,然后通过位置来找.</p>
+<p>然后想到了用window.getSelection().anchorOffset;这个api获取坐标<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var start = window.getSelection().anchorOffset; </div><div class="line">var end = window.getSelection().focusOffset;</div></pre></td></tr></table></figure></p>
+<p>但是现这个起始结束位置是相对于他们所在的父节点的位置而不是你需要的某块内容的位置.<br>所以我最终采用了先在选取的位置插入一个唯一的id的标签,然后再在整个内容中去找这个唯一id的位置,<br>然后保存这个位置,在以后需要标记的时候取这个坐标然后再文章中标记.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">self.gS_r = window.getSelection().getRangeAt(0);//获得range对象</div><div class="line">self.gS_r1 = window.getSelection().toString();//获得带有换行符的选中文本</div><div class="line">let temp = document.createElement(&quot;u&quot;);</div><div class="line"></div><div class="line">let compLength = document.createElement(&quot;u&quot;);//计算带标签的实际长度</div><div class="line">let tempText = $(&apos;.text&apos;).html();</div><div class="line"></div><div class="line">temp.id=&quot;###&quot;+self.noteCount;</div><div class="line">//$(temp).innerHTML=r1;</div><div class="line">$(compLength).append(self.gS_r.cloneContents());////计算带标签的实际长度</div><div class="line"></div><div class="line">self.gS_r.insertNode(temp);//</div><div class="line"></div><div class="line">let str1 = &apos;&lt;u id=&quot;###&apos;+self.noteCount+&apos;&quot;&gt;&apos;;</div><div class="line">self.start = $(&apos;.text&apos;).html().indexOf(str1);</div><div class="line">let str = $(compLength).html();</div><div class="line">let regStart = /^&lt;[\w]+?&gt;/</div><div class="line">let regEnd = /&lt;\/[\w]+?&gt;$/</div><div class="line">if(str)&#123;</div><div class="line">    for(;regStart.exec(str);)&#123;</div><div class="line">        str = str.replace(regStart,&apos;&apos;)</div><div class="line">    &#125;</div><div class="line">    for(;regEnd.exec(str);)&#123;</div><div class="line">        str = str.replace(regEnd,&apos;&apos;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">self.end = self.start+str.length;</div><div class="line"></div><div class="line"></div><div class="line">tempText = tempText.slice(0,self.end)+&apos;&lt;/u&gt;&apos;+tempText.slice(self.end);</div><div class="line">tempText = tempText.slice(0,self.start)+&apos;&lt;u id=&quot;###&apos;+self.noteCount+&apos;&quot;&gt;&apos;+tempText.slice(self.start);</div></pre></td></tr></table></figure>
+<p>通过坐标在前端加载页面时更改html字符串<br>实现不修改库中文章,在文章中标记内容.</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p><a href="http://hellowangwei.github.io/blog" target="_blank" rel="external">我的博客</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-07-14T10:46:19.947Z" itemprop="dateUpdated">2017-07-14 18:46:19</time>
+</span><br>
+
+
+        
+        <br><b style="color:#f66">版权声明</b> - Wangwei，转载请表明出处：<br><a href="/blog/2017/07/14/window-getSelection的使用/" target="_blank" rel="external">http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/</a>
+        
+    </div>
+    <footer>
+        <a href="http://hellowangwei.cn/blog">
+            <img src="/blog/img/avatar.jpg" alt="Wang Wei">
+            Wang Wei
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/window/">window</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/&title=《window.getSelection的使用》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/&title=《window.getSelection的使用》 — WangWei'blog&source=Web 前端，Nodejs 后端开发，Javascript 全栈式开发" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《window.getSelection的使用》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2017/06/23/ES6数组api/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ES6数组api</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/index.html',
+        sourceId: 'window-getSelection的使用',
+        productKey: '00c942fa607846efad6e1357838ea8df',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/blog/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Wang Wei &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/&title=《window.getSelection的使用》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/&title=《window.getSelection的使用》 — WangWei'blog&source=Web 前端，Nodejs 后端开发，Javascript 全栈式开发" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《window.getSelection的使用》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqElEQVR42u3aMXaDQAwFQN//0k6bFIYvaUVcDFUewesdCpC/9HrFx/vySK5JVvi0zu/zr40DDw8P78Gt56tdbzFfLd8zHh4e3jbv+is/Pb6TT/XO5H/f7AoPDw/vy3jVkrd3/egFg4eHh/cFvPwreyv884sBDw8PL+ZNQoRqOFt9STyUteDh4eHFvLyL9D1/r/T38PDw8MZd9eoDd+NOT0YT8PDw8DZ4kzg1xyfF9KlyGQ8PD2+bV93W9fl868n6vRvx51N4eHh4j/B6pXCv4J6X3Tfr4OHh4a3xktZXr/Dtld3VxtjNbwU8PDy8o7zqpflG84GD6pWjZhgeHh7emNcbt8pHrPIVqtFDIYzAw8PDW+Pl26pGEvlAVfVVcXM9Hh4e3oO8ajTQCyPym9t7heDh4eHt8XqRa/6rvxrL5mX9zX/x8PDw1ngbTazey2NyJR4eHt4zvOr4VHVb1bhh/loaTYfh4eHhxZ/Kt5g86E+t2ctjP4a5eHh4eId4SXlabf/nxe4cfHM9Hh4e3gIvn/DcgPVGspI2GB4eHt4eL2/GV4Paebn8Kh7RbwU8PDy8MS9v/1cL3MktKGfPk2IaDw8Pr8jrLVcdL5iMYR2IHvDw8PCO8noBboLM44PeaEK5DYaHh4e3wOs1vfJRqmowkce10YsBDw8Pb5mXD1TlLatesd673Xh4eHjP8KoP93IocCglKB94eHh4R3nv4pEHwdVYIQ98CwMKeHh4eAu8yTM2b6FVb0ES+x57K+Lh4eG1eKfC2V6barJOFKDg4eHhrfGScjkfjaqOWPWGsaKeFx4eHt7X8JJiOo8YJmMN5f4eHh4e3uO8SSCbxLs5IxpNwMPDw1vj9bZSDTJOrRPFEHh4eHhrvPLP+8szSdiat/kngTIeHh7eAu8Hz90DJ3AWeYYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'hellowangwei';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'hellowangwei';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
