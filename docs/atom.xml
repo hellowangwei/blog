@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://hellowangwei.cn/blog/"/>
-  <updated>2017-07-14T10:46:19.947Z</updated>
+  <updated>2017-07-17T10:09:06.740Z</updated>
   <id>http://hellowangwei.cn/blog/</id>
   
   <author>
@@ -16,13 +16,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>throttle避免重复点击</title>
+    <link href="http://hellowangwei.cn/blog/2017/07/17/throttle%E9%81%BF%E5%85%8D%E9%87%8D%E5%A4%8D%E7%82%B9%E5%87%BB/"/>
+    <id>http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/</id>
+    <published>2017-07-17T09:08:30.000Z</published>
+    <updated>2017-07-17T10:09:06.740Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="高阶函数实现控制频率"><a href="#高阶函数实现控制频率" class="headerlink" title="高阶函数实现控制频率"></a>高阶函数实现控制频率</h1><p>示例代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const btn = document.getElementById(&apos;btn&apos;)</div><div class="line"></div><div class="line">function throttle(fn,wait)&#123;</div><div class="line">    let timer;</div><div class="line">    return function(...args)&#123;</div><div class="line">        if(!timer)&#123;</div><div class="line">            timer = setTimeout(()=&gt;&#123;timer=null&#125;,wait)</div><div class="line">            return fn.apply(this,args);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//按钮每500ms一次点击有效</div><div class="line">btn.onclick = throttle(function()&#123;</div><div class="line">    console.log(&quot;button clicked&quot;);</div><div class="line">&#125;,500)</div></pre></td></tr></table></figure></p>
+<p>这段代码实现了点击间隔必须大于500ms,否则点击后不执行fn函数,避免重复点击.</p>
+<p>这里用到的概念是高阶函数和闭包,首先throttle是一个高阶函数,它接收两个参数,一个函数和一个时间.<br>throttle执行返回一个函数,里面可以修改timer这个变量(这里形成了一个闭包).</p>
+<p><strong>使用</strong></p>
+<p>使用时先初始化一下,然后使用throttle这个函数的返回函数.<br>本例是给onclick事件绑定这个返回函数.<br>当timer为false时进入执行逻辑,先让timer等于一个计时器,此时timer的bool值为true,<br><strong><em>(如果再次执行onclick会因为timer为true跳过逻辑,conger不执行fn)</em></strong><br>然后计时器在等待wait时间后再次将timer变为false,此时再次onlick则执行fn.从而实现控制点击频率.</p>
+<p><a href="http://hellowangwei.github.io/blog" target="_blank" rel="external">我的博客</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;高阶函数实现控制频率&quot;&gt;&lt;a href=&quot;#高阶函数实现控制频率&quot; class=&quot;headerlink&quot; title=&quot;高阶函数实现控制频率&quot;&gt;&lt;/a&gt;高阶函数实现控制频率&lt;/h1&gt;&lt;p&gt;示例代码:&lt;br&gt;&lt;figure class=&quot;highlight plai
+    
+    </summary>
+    
+      <category term="笔记随笔" scheme="http://hellowangwei.cn/blog/categories/%E7%AC%94%E8%AE%B0%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="js" scheme="http://hellowangwei.cn/blog/tags/js/"/>
+    
+      <category term="高阶函数" scheme="http://hellowangwei.cn/blog/tags/%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>window.getSelection的使用</title>
     <link href="http://hellowangwei.cn/blog/2017/07/14/window-getSelection%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://hellowangwei.cn/blog/2017/07/14/window-getSelection的使用/</id>
     <published>2017-07-14T07:17:15.000Z</published>
     <updated>2017-07-14T10:46:19.947Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>项目中做了一个笔记的功能,需求是选中一段内容后添加笔记,用户写完后将用户写的内容和选中的内容保存起来,在文章中用下滑线标记。<br>在查看笔记时要看到之前的标记,但是不能改写数据库中原html的内容。<br>效果是这样的：<br><br><br>这里用到了浏览器选取文本信息,选用了window.getSelection这个api.</p>
+    <content type="html"><![CDATA[<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>项目中做了一个笔记的功能,需求是选中一段内容后添加笔记,用户写完后将用户写的内容和选中的内容保存起来,在文章中用下滑线标记。<br>在查看笔记时要看到之前的标记,但是不能改写数据库中原html的内容。<br>效果是这样的：<br><img src="/blog/2017/07/14/window-getSelection的使用/1.png" alt="1.png" title=""><br><img src="/blog/2017/07/14/window-getSelection的使用/2.png" alt="2.png" title=""><br>这里用到了浏览器选取文本信息,选用了window.getSelection这个api.</p>
 <h1 id="window-getSelection"><a href="#window-getSelection" class="headerlink" title="window.getSelection"></a>window.getSelection</h1><p><strong>概述</strong><br>返回一个  Selection 对象，表示用户选择的文本范围或插入符号的当前位置。<br><strong>语法</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const selection = window.getSelection() ;</div></pre></td></tr></table></figure>
 <p>*selection 是一个 Selection 对象。在页面中用鼠标选中一段内容时, Selection中就会包含所选中部分的信息,包括当前选中的文字内容,<br>父节点,子节点信息,选中部分的开始点,结束点分别属于的节点,以及在其父节点中的位置等.<br>详细的内容参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/getSelection" title="window.getSelection" target="_blank" rel="external"> window.getSelection </a></p>

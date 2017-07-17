@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>throttle避免重复点击 | WangWei&#39;blog | 好好生活•天天向上</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js,高阶函数">
+    <meta name="description" content="高阶函数实现控制频率示例代码:12345678910111213141516const btn = document.getElementById(&amp;apos;btn&amp;apos;)function throttle(fn,wait)&amp;#123;    let timer;    return function(...args)&amp;#123;        if(!timer)&amp;#123;">
+<meta name="keywords" content="js,高阶函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="throttle避免重复点击">
+<meta property="og:url" content="http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/index.html">
+<meta property="og:site_name" content="WangWei&#39;blog">
+<meta property="og:description" content="高阶函数实现控制频率示例代码:12345678910111213141516const btn = document.getElementById(&amp;apos;btn&amp;apos;)function throttle(fn,wait)&amp;#123;    let timer;    return function(...args)&amp;#123;        if(!timer)&amp;#123;">
+<meta property="og:updated_time" content="2017-07-17T10:09:06.740Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="throttle避免重复点击">
+<meta name="twitter:description" content="高阶函数实现控制频率示例代码:12345678910111213141516const btn = document.getElementById(&amp;apos;btn&amp;apos;)function throttle(fn,wait)&amp;#123;    let timer;    return function(...args)&amp;#123;        if(!timer)&amp;#123;">
+    
+        <link rel="alternate" type="application/atom+xml" title="WangWei&#39;blog" href="/blog/atom.xml">
+    
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/brand.jpg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Wang Wei</h5>
+          <a href="mailto:380902396@qq.com" title="380902396@qq.com" class="mail">380902396@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://hellowangwei.cn"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hellowangwei" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/3911516398" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">throttle避免重复点击</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">throttle避免重复点击</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-17T09:08:30.000Z" itemprop="datePublished" class="page-time">
+  2017-07-17
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/笔记随笔/">笔记随笔</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#高阶函数实现控制频率"><span class="post-toc-number">1.</span> <span class="post-toc-text">高阶函数实现控制频率</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-throttle避免重复点击"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">throttle避免重复点击</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-17 17:08:30" datetime="2017-07-17T09:08:30.000Z"  itemprop="datePublished">2017-07-17</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/blog/categories/笔记随笔/">笔记随笔</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="高阶函数实现控制频率"><a href="#高阶函数实现控制频率" class="headerlink" title="高阶函数实现控制频率"></a>高阶函数实现控制频率</h1><p>示例代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const btn = document.getElementById(&apos;btn&apos;)</div><div class="line"></div><div class="line">function throttle(fn,wait)&#123;</div><div class="line">    let timer;</div><div class="line">    return function(...args)&#123;</div><div class="line">        if(!timer)&#123;</div><div class="line">            timer = setTimeout(()=&gt;&#123;timer=null&#125;,wait)</div><div class="line">            return fn.apply(this,args);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//按钮每500ms一次点击有效</div><div class="line">btn.onclick = throttle(function()&#123;</div><div class="line">    console.log(&quot;button clicked&quot;);</div><div class="line">&#125;,500)</div></pre></td></tr></table></figure></p>
+<p>这段代码实现了点击间隔必须大于500ms,否则点击后不执行fn函数,避免重复点击.</p>
+<p>这里用到的概念是高阶函数和闭包,首先throttle是一个高阶函数,它接收两个参数,一个函数和一个时间.<br>throttle执行返回一个函数,里面可以修改timer这个变量(这里形成了一个闭包).</p>
+<p><strong>使用</strong></p>
+<p>使用时先初始化一下,然后使用throttle这个函数的返回函数.<br>本例是给onclick事件绑定这个返回函数.<br>当timer为false时进入执行逻辑,先让timer等于一个计时器,此时timer的bool值为true,<br><strong><em>(如果再次执行onclick会因为timer为true跳过逻辑,conger不执行fn)</em></strong><br>然后计时器在等待wait时间后再次将timer变为false,此时再次onlick则执行fn.从而实现控制点击频率.</p>
+<p><a href="http://hellowangwei.github.io/blog" target="_blank" rel="external">我的博客</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-07-17T10:09:06.740Z" itemprop="dateUpdated">2017-07-17 18:09:06</time>
+</span><br>
+
+
+        
+        <br><b style="color:#f66">版权声明</b> - Wangwei，转载请表明出处：<br><a href="/blog/2017/07/17/throttle避免重复点击/" target="_blank" rel="external">http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/</a>
+        
+    </div>
+    <footer>
+        <a href="http://hellowangwei.cn/blog">
+            <img src="/blog/img/avatar.jpg" alt="Wang Wei">
+            Wang Wei
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/高阶函数/">高阶函数</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/&title=《throttle避免重复点击》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/&title=《throttle避免重复点击》 — WangWei'blog&source=Web 前端，Nodejs 后端开发，Javascript 全栈式开发" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《throttle避免重复点击》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2017/07/14/window-getSelection的使用/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">window.getSelection的使用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/index.html',
+        sourceId: 'throttle避免重复点击',
+        productKey: '00c942fa607846efad6e1357838ea8df',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/blog/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Wang Wei &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/&title=《throttle避免重复点击》 — WangWei'blog&pic=http://hellowangwei.cn/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/&title=《throttle避免重复点击》 — WangWei'blog&source=Web 前端，Nodejs 后端开发，Javascript 全栈式开发" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《throttle避免重复点击》 — WangWei'blog&url=http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/&via=http://hellowangwei.cn/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hellowangwei.cn/blog/2017/07/17/throttle避免重复点击/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3awY7iQAwE0Pn/n2avK40IZVf3LoeXEwKR9AtSbMr98xMfr7+O3+//fv3uu9Pj+erHDjw8PLxi6ckF+oU2a8vXjIeHh3eb9+7UyevnsvH8iM8LQF6E8PDw8L6NF530zfu7IpEXGDw8PLzv5D0XgLyc5Gf+b3UPDw8P75E3DRGSRjlpl/NrXc9a8PDw8GJe3tR+z+sr8z08PDy8eqqeN8r9oCu/rYPV4uHh4V3g5UtJmtdk09Vu6JW3y3h4eHi3eXmAmy9iCpsWgDwKwcPDw7vNSzYH5MUgv2XN+T+sHw8PD+8yb9oKTwvDst9vGn08PDy8C7wmaGii2x1jV5Dw8PDwzvJ2hSEpAM321uTTaPyGh4eHd4HXB7XT27EbgzXtPh4eHt49Xn7JpmA0YcdyRIeHh4d3lHcqgFg2u6sCc6zi4eHh4a14faTbDKt2UUUV8uLh4eEd4k0ZTbSab1Gd/jLRL4aHh4dX816PR9NY55/mv0MSMX8II/Dw8PAO8ZqNTa/gSOLX6fasaFCHh4eHd4GX/7HPNwHkI6tmS9b0nHh4eHineHkgO044io0ITWMd7YnAw8PDq3mnQoTpGGx3O/JbiYeHh3eP9yEMjdvi5NG/6/qX7TseHh7eBd4unJ1eZpyIxOtZFjA8PDy8mjcdRPXxwa6ETAsSHh4e3m3ebinT5U6jimkTv9x6hYeHh7fiJUP6XRiRF5tBoJAP6vDw8PCO8l7Do3+IN8UmD5o/zPfw8PDwCl4z8u+b7ySK7SNgPDw8vBu83akTRt7Z5lupxsEHHh4e3jXedHI0fdBPh2RNAYtOjYeHh/cPeXm4kGwIyMOO3TYFPDw8vO/hTdvl6VDtWGuOh4eHd423e3w3YcTu6vka8PDw8O7xdn/yc8wulj0QQ+Dh4eGd5/0B2CJ9gpJImWEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'hellowangwei';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'hellowangwei';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
